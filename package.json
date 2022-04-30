@@ -5,6 +5,18 @@
   "description": "Type definitions for NLPDev",
   "main": "./dist/default/index.js",
   "types": "./dist/default/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:dev": "tsc -w",
+    "doc": "typedoc --json docs/typedoc-out.json default/index.ts && node scripts/DocsBuilder.mjs",
+    "prepare": "husky install",
+    "lint:check": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "changelog": "git-cliff --output CHANGELOG.md",
+    "prepublishOnly": "npm run build"
+  },
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
