@@ -1,2 +1,3 @@
 # shared
-typing of shared by both backend and frontend
+
+> Type definitions for both NLPDev backend and frontend
