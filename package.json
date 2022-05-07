@@ -1,6 +1,5 @@
 {
   "name": "@nlpdev/shared",
-  "private": false,
   "version": "0.0.1",
   "description": "Type definitions for NLPDev",
   "license": "MIT",
@@ -25,7 +24,6 @@
     "changelog": "git-cliff --output CHANGELOG.md",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-angular": "^16.2.4",
@@ -39,5 +37,6 @@
     "prettier": "^2.6.2",
     "typedoc": "^0.22.15",
     "typescript": "^4.6.4"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
