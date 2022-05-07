@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "Type definitions for NLPDev",
   "license": "MIT",
+  "repository": "https://github.com/SocialNetProcessingLab",
   "bugs": {
     "url": "https://github.com/SocialNetProcessingLab/shared/issues"
   },
