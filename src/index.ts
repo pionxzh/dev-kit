@@ -1,1 +1,1 @@
-export type A = 1
+export * from './api'

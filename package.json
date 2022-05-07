@@ -15,7 +15,7 @@
   "scripts": {
     "build": "tsc",
     "build:dev": "tsc -w",
-    "doc": "typedoc --json docs/typedoc-out.json default/index.ts && node scripts/DocsBuilder.mjs",
+    "doc": "typedoc --json docs/typedoc-out.json src/index.ts && node scripts/docs-build.mjs",
     "prepare": "husky install",
     "lint:check": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",

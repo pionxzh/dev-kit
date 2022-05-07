@@ -111,3 +111,7 @@ dist
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+docs/docs.json
+docs/typedoc-out.json
+CHANGELOG.md
