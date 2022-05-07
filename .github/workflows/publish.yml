@@ -1,9 +1,9 @@
-name: Publish
+name: publish to NPM
 on:
   release:
     types: [ published ]
 jobs:
-  Npm-Publish:
+  npm-publish:
     name: npm
     runs-on: ubuntu-latest
     steps:
