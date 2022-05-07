@@ -5,6 +5,7 @@ on:
 jobs:
   npm-publish:
     name: npm
+    environment: Publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
