@@ -1,13 +1,13 @@
 {
-  "name": "@nlpdev/shared",
-  "version": "0.0.4",
-  "description": "Type definitions for NLPDev",
+  "name": "@textea/shared",
+  "version": "0.0.5",
+  "description": "Type definitions for Textea packages",
   "license": "MIT",
-  "repository": "https://github.com/SocialNetProcessingLab",
+  "repository": "https://github.com/TexteaInc",
   "bugs": {
-    "url": "https://github.com/SocialNetProcessingLab/shared/issues"
+    "url": "https://github.com/TexteaInc/shared/issues"
   },
-  "homepage": "https://github.com/SocialNetProcessingLab/shared#readme",
+  "homepage": "https://github.com/TexteaInc/shared#readme",
   "files": [
     "dist"
   ],
@@ -39,5 +39,5 @@
     "typedoc": "^0.22.15",
     "typescript": "^4.6.4"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.1"
 }
