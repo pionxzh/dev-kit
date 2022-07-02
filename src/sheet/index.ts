@@ -44,7 +44,7 @@ export interface SheetTransformFunction<Config extends Record<string, unknown> =
   type: 'transform'
 }
 
-export interface ComputeConfig {
+export interface PredictConfig {
   inputs: {
     type: CellType
     name: string
@@ -56,7 +56,7 @@ export interface ComputeConfig {
   [key: string]: unknown
 }
 
-export interface SheetPredictFunction<Config extends ComputeConfig = ComputeConfig> extends SheetFunction<(
+export interface SheetPredictFunction<Config extends PredictConfig = PredictConfig> extends SheetFunction<(
   columns: Column[], config: Config) => Promise<Column[]>,
   Config> {
   type: 'predict'
