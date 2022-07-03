@@ -50,7 +50,7 @@ export interface SheetReduceFunction<Config extends Record<string, unknown> = Re
   type: 'reduce'
 }
 
-export interface PredictConfig {
+export interface TransformConfig {
   inputs: {
     type: CellType
     name: string
@@ -58,12 +58,12 @@ export interface PredictConfig {
   outputs: {
     type: CellType
     name: string
-  }
+  }[]
 
   [key: string]: unknown
 }
 
-export interface SheetTransformFunction<Config extends PredictConfig = PredictConfig> extends SheetFunction<(
+export interface SheetTransformFunction<Config extends TransformConfig = TransformConfig> extends SheetFunction<(
   columns: Column[], config: Config) => Promise<Column[]>,
   Config> {
   type: 'transform'
