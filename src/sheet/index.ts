@@ -31,17 +31,23 @@ export interface SheetFunction<Func extends (
    * Unique ID
    */
   id: string
-  type: 'transform' | 'summary' | 'compute' | 'predict'
+  type: 'map' | 'reduce' | 'transform'
   name: string
   func: Func
   defaultConfig: Config
   config?: FC<ConfigPanelProps<Config>>
 }
 
-export interface SheetTransformFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<(
+export interface SheetMapFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<(
   cells: Cell[], config: Config) => Promise<Cell[]>,
   Config> {
-  type: 'transform'
+  type: 'map'
+}
+
+export interface SheetReduceFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<(
+  column: Column, config: Config) => Promise<Cell>,
+  Config> {
+  type: 'reduce'
 }
 
 export interface PredictConfig {
@@ -53,26 +59,12 @@ export interface PredictConfig {
     type: CellType
     name: string
   }
+
   [key: string]: unknown
 }
 
-export interface SheetPredictFunction<Config extends PredictConfig = PredictConfig> extends SheetFunction<(
+export interface SheetTransformFunction<Config extends PredictConfig = PredictConfig> extends SheetFunction<(
   columns: Column[], config: Config) => Promise<Column[]>,
   Config> {
-  type: 'predict'
-}
-
-export interface SheetSummaryFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<(
-  column: Column, config: Config) => Promise<Cell>,
-  Config> {
-  type: 'summary'
-}
-
-/**
- * read multiple columns, output multiple columns
- */
-export interface SheetComputeFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<// todo
-  (sheet: unknown, config: Config) => Promise<unknown>,
-  Config> {
-  type: 'compute'
+  type: 'transform'
 }
