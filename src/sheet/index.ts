@@ -55,7 +55,7 @@ export type ObjValueTuple<T, KS extends any[] = TupleUnion<keyof T>, R extends a
     ? ObjValueTuple<T, KT, [...R, T[K & keyof T]]>
     : R
 
-export type ParamToType<T extends IOItem> =
+export type InferIOItemToJSType<T extends IOItem> =
   T extends { type: infer U } ? U extends CellTypes['Array']
       ? unknown[] : U extends CellTypes['Boolean']
         ? boolean : U extends CellTypes['Json']
@@ -65,7 +65,7 @@ export type ParamToType<T extends IOItem> =
     : never
 
 export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
-  ? U extends IOItem ? [ParamToType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
+  ? U extends IOItem ? [InferIOItemToJSType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
 
 // fixme: if type is reduce, output a cell or cell array instead of columns
 export interface SheetFunction<Type extends SheetFunctionType,
