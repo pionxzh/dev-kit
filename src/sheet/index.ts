@@ -24,13 +24,13 @@ export type ConfigPanelProps<Config extends Record<string, unknown>> = {
   onChangeConfig: (apply: (oldConfig: Config) => Config) => void
 }
 
-export type Param = {
+export type IOItem = {
   type: CellType
   name: string
 }
 
 export type IO = {
-  [key: string]: Param
+  [key: string]: IOItem
 }
 
 export type SheetFunctionType = 'map' | 'reduce' | 'transform'
@@ -55,7 +55,7 @@ export type ObjValueTuple<T, KS extends any[] = TupleUnion<keyof T>, R extends a
     ? ObjValueTuple<T, KT, [...R, T[K & keyof T]]>
     : R
 
-export type ParamToType<T extends Param> =
+export type ParamToType<T extends IOItem> =
   T extends { type: infer U } ? U extends CellTypes['Array']
       ? unknown[] : U extends CellTypes['Boolean']
         ? boolean : U extends CellTypes['Json']
@@ -65,8 +65,9 @@ export type ParamToType<T extends Param> =
     : never
 
 export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
-  ? U extends Param ? [ParamToType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
+  ? U extends IOItem ? [ParamToType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
 
+// fixme: if type is reduce, output a cell or cell array instead of columns
 export interface SheetFunction<Type extends SheetFunctionType,
   Inputs extends IO,
   Outputs extends IO,
@@ -98,7 +99,7 @@ export const createSheetFunction = <Type extends SheetFunctionType,
   outputs: Outputs,
   defaultConfig: Config,
   fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
-  config: SheetFunction<Type, Inputs, Outputs, Config>['config']
+  config?: SheetFunction<Type, Inputs, Outputs, Config>['config']
 ): SheetFunction<Type, Inputs, Outputs, Config> => {
   return {
     id,
@@ -111,3 +112,28 @@ export const createSheetFunction = <Type extends SheetFunctionType,
     config
   }
 }
+
+/**
+ * This is an example
+ */
+export const getExample = () => createSheetFunction(
+  'to-lowercase',
+  'To LowerCase',
+  'map',
+  {
+    input: {
+      type: cellTypes.String,
+      name: 'input column'
+    }
+  },
+  {
+    output: {
+      type: cellTypes.String,
+      name: 'output column'
+    }
+  },
+  { /* no config */},
+  async (columns) => {
+    return [columns[0].map(item => item.toLowerCase())]
+  }
+)
