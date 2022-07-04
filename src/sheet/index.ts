@@ -68,10 +68,11 @@ export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
   ? U extends IOItem ? [InferIOItemToJSType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
 
 // fixme: if type is reduce, output a cell or cell array instead of columns
-export interface SheetFunction<Type extends SheetFunctionType,
-  Inputs extends IO,
-  Outputs extends IO,
-  Config extends Record<string, unknown>> {
+export interface SheetFunction<
+  Type extends SheetFunctionType = SheetFunctionType,
+  Inputs extends IO = IO,
+  Outputs extends IO = IO,
+  Config extends Record<string, unknown> = Record<string, any>> {
   /**
    * UUID4
    */
@@ -84,7 +85,7 @@ export interface SheetFunction<Type extends SheetFunctionType,
     columns: Arg<ObjValueTuple<Inputs>>,
     config: Config) => Promise<Arg<ObjValueTuple<Outputs>>>
   defaultConfig: Config
-  config?: FC<ConfigPanelProps<Config>>
+  configPanel?: FC<ConfigPanelProps<Config>>
 }
 
 export const createSheetFunction = <Type extends SheetFunctionType,
@@ -99,7 +100,7 @@ export const createSheetFunction = <Type extends SheetFunctionType,
   outputs: Outputs,
   defaultConfig: Config,
   fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
-  config?: SheetFunction<Type, Inputs, Outputs, Config>['config']
+  configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel']
 ): SheetFunction<Type, Inputs, Outputs, Config> => {
   return {
     id,
@@ -109,7 +110,7 @@ export const createSheetFunction = <Type extends SheetFunctionType,
     name,
     defaultConfig,
     fn,
-    config
+    configPanel
   }
 }
 
