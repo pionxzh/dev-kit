@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-export const CellTypes = {
+export const cellTypes = {
   Array: '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0',
   Boolean: '1b692f8e-6f4d-4708-bf04-e624e7101a3d',
   Json: 'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001',
@@ -8,8 +8,9 @@ export const CellTypes = {
   String: '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0'
 } as const
 
-type CellTypesKeys = keyof typeof CellTypes;
-export type CellType = typeof CellTypes[CellTypesKeys]
+export type CellTypes = typeof cellTypes
+export type CellTypesKeys = keyof CellTypes
+export type CellType = CellTypes[CellTypesKeys]
 
 export type Cell =
   (undefined | null | boolean | string | number | object)
@@ -23,48 +24,90 @@ export type ConfigPanelProps<Config extends Record<string, unknown>> = {
   onChangeConfig: (apply: (oldConfig: Config) => Config) => void
 }
 
-export interface SheetFunction<Func extends (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any, config: Config, ...args: unknown[]) => Promise<any>,
-  Config extends Record<string, unknown> = Record<string, unknown>> {
+export type Param = {
+  type: CellType
+  name: string
+}
+
+export type IO = {
+  [key: string]: Param
+}
+
+export type SheetFunctionType = 'map' | 'reduce' | 'transform'
+
+export type UnionToIntersection<U> =
+  (U extends any ? (k: U) => void : never) extends ((k: infer I) => void)
+    ? I
+    : never
+
+export type LastOf<T> =
+  UnionToIntersection<T extends any ? () => T : never> extends () => (infer R)
+    ? R
+    : never
+
+export type Push<T extends any[], V> = [...T, V];
+export type TupleUnion<T, L = LastOf<T>, N = [T] extends [never]
+  ? true
+  : false> =
+  true extends N ? [] : Push<TupleUnion<Exclude<T, L>>, L>
+export type ObjValueTuple<T, KS extends any[] = TupleUnion<keyof T>, R extends any[] = []> =
+  KS extends [infer K, ...infer KT]
+    ? ObjValueTuple<T, KT, [...R, T[K & keyof T]]>
+    : R
+
+export type ParamToType<T extends Param> =
+  T extends { type: infer U } ? U extends CellTypes['Array']
+      ? unknown[] : U extends CellTypes['Boolean']
+        ? boolean : U extends CellTypes['Json']
+          ? object : U extends CellTypes['Number']
+            ? number : U extends CellTypes['String']
+              ? string : never
+    : never
+
+export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
+  ? U extends Param ? [ParamToType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
+
+export interface SheetFunction<Type extends SheetFunctionType,
+  Inputs extends IO,
+  Outputs extends IO,
+  Config extends Record<string, unknown>> {
   /**
-   * Unique ID
+   * UUID4
    */
   id: string
-  type: 'map' | 'reduce' | 'transform'
+  type: Type
   name: string
-  func: Func
+  inputs: Inputs
+  outputs: Outputs
+  fn: (
+    columns: Arg<ObjValueTuple<Inputs>>,
+    config: Config) => Promise<Arg<ObjValueTuple<Outputs>>>
   defaultConfig: Config
   config?: FC<ConfigPanelProps<Config>>
 }
 
-export interface SheetMapFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<(
-  cells: Cell[], config: Config) => Promise<Cell[]>,
-  Config> {
-  type: 'map'
-}
-
-export interface SheetReduceFunction<Config extends Record<string, unknown> = Record<string, unknown>> extends SheetFunction<(
-  column: Column, config: Config) => Promise<Cell>,
-  Config> {
-  type: 'reduce'
-}
-
-export interface TransformConfig {
-  inputs: {
-    type: CellType
-    name: string
-  }[]
-  outputs: {
-    type: CellType
-    name: string
-  }[]
-
-  [key: string]: unknown
-}
-
-export interface SheetTransformFunction<Config extends TransformConfig = TransformConfig> extends SheetFunction<(
-  columns: Column[], config: Config) => Promise<Column[]>,
-  Config> {
-  type: 'transform'
+export const createSheetFunction = <Type extends SheetFunctionType,
+  Inputs extends IO,
+  Outputs extends IO,
+  Config extends Record<string, unknown>>
+(
+  id: string,
+  name: string,
+  type: Type,
+  inputs: Inputs,
+  outputs: Outputs,
+  defaultConfig: Config,
+  fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
+  config: SheetFunction<Type, Inputs, Outputs, Config>['config']
+): SheetFunction<Type, Inputs, Outputs, Config> => {
+  return {
+    id,
+    type,
+    inputs,
+    outputs,
+    name,
+    defaultConfig,
+    fn,
+    config
+  }
 }
