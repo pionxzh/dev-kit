@@ -1,46 +1,20 @@
 {
   "compilerOptions": {
-    /* Projects */
-    "incremental": true,
-    /* Language and Environment */
-    "lib": [
-      "ES2020",
-      "DOM"
-    ],
-    "target": "ES2020",
-    /* Modules */
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    /* Emit */
-    "declaration": true,
-    "declarationMap": true,
-    "importsNotUsedAsValues": "error",
+    "module": "ES2022",
     "outDir": "dist",
-    "stripInternal": true,
-    "preserveConstEnums": true,
-    "removeComments": false,
+    "baseUrl": "./src",
+    "strictNullChecks": true,
+    "exactOptionalPropertyTypes": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "target": "ES2019",
     "sourceMap": true,
-    /* Interop Constraints */
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    /* Type Checking */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "exactOptionalPropertyTypes": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "allowUnreachableCode": false,
-    /* Completeness */
-    "skipLibCheck": false
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
-  "include": [
-    "src"
-  ],
-  "compileOnSave": true
+  "exclude": [
+    "node_modules"
+  ]
 }
