@@ -4,6 +4,17 @@
   "type": "module",
   "description": "Type definitions for Textea packages",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./sheet": {
+      "import": "./dist/sheet/index.js"
+    },
+    "./api": {
+      "import": "./dist/api/index.js"
+    }
+  },
   "repository": "https://github.com/TexteaInc",
   "bugs": {
     "url": "https://github.com/TexteaInc/shared/issues"
