@@ -6,13 +6,16 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./sheet": {
-      "import": "./dist/sheet/index.js"
+      "import": "./dist/sheet/index.js",
+      "types": "./dist/sheet/index.d.ts"
     },
     "./api": {
-      "import": "./dist/api/index.js"
+      "import": "./dist/api/index.js",
+      "types": "./dist/api/index.d.ts"
     }
   },
   "repository": "https://github.com/TexteaInc",
