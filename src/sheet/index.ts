@@ -85,7 +85,7 @@ export interface SheetFunction<
     columns: Arg<ObjValueTuple<Inputs>>,
     config: Config) => Promise<Arg<ObjValueTuple<Outputs>>>
   defaultConfig: Config
-  configPanel?: FC<ConfigPanelProps<Config>>
+  configPanel: FC<ConfigPanelProps<Config>> | undefined
 }
 
 export const createSheetFunction = <Type extends SheetFunctionType,
