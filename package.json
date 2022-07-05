@@ -1,6 +1,6 @@
 {
   "name": "@textea/shared",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "type": "module",
   "description": "Type definitions for Textea packages",
   "license": "MIT",
