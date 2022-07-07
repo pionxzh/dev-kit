@@ -1,4 +1,6 @@
 import type { FC } from 'react'
+import '../util'
+import { TDateISO } from '../util'
 
 export const cellTypes = {
   Array: '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0',
@@ -65,11 +67,16 @@ export type InferIOItemToJSType<T extends IOItem> =
     : never
 
 export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
-  ? U extends IOItem ? [InferIOItemToJSType<U>[], ...Arg<V>] : [unknown, ...Arg<V>] : []
+  ? U extends IOItem
+    ? [InferIOItemToJSType<U>[], ...Arg<V>]
+    : [unknown, ...Arg<V>] : []
+
+export type Columns<T extends IO> = {
+  [Key in keyof T]: InferIOItemToJSType<T[Key]>[]
+}
 
 // fixme: if type is reduce, output a cell or cell array instead of columns
-export interface SheetFunction<
-  Type extends SheetFunctionType = SheetFunctionType,
+export interface SheetFunction<Type extends SheetFunctionType = SheetFunctionType,
   Inputs extends IO = IO,
   Outputs extends IO = IO,
   Config extends Record<string, unknown> = Record<string, any>> {
@@ -82,8 +89,8 @@ export interface SheetFunction<
   inputs: Inputs
   outputs: Outputs
   fn: (
-    columns: Arg<ObjValueTuple<Inputs>>,
-    config: Config) => Promise<Arg<ObjValueTuple<Outputs>>>
+    columns: Columns<Inputs>,
+    config: Config) => Promise<Columns<Outputs>>
   defaultConfig: Config
   configPanel: FC<ConfigPanelProps<Config>> | undefined
 }
@@ -133,8 +140,10 @@ export const getExample = () => createSheetFunction(
       name: 'output column'
     }
   },
-  { /* no config */},
+  { /* no config */ },
   async (columns) => {
-    return [columns[0].map(item => item.toLowerCase())]
+    return {
+      output: columns.input.map(item => item.toUpperCase())
+    }
   }
 )

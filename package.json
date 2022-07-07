@@ -16,6 +16,10 @@
     "./api": {
       "import": "./dist/api/index.js",
       "types": "./dist/api/index.d.ts"
+    },
+    "./util": {
+      "import": "./dist/util/index.js",
+      "types": "./dist/util/index.d.ts"
     }
   },
   "repository": "https://github.com/TexteaInc",
