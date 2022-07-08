@@ -90,7 +90,8 @@ export interface SheetFunction<Type extends SheetFunctionType = SheetFunctionTyp
     columns: Columns<Inputs>,
     config: Config) => Promise<Columns<Outputs>>
   defaultConfig: Config
-  configPanel: FC<ConfigPanelProps<Config>> | undefined
+  configPanel: FC<ConfigPanelProps<Config>> | undefined,
+  description: string | undefined
 }
 
 export const createSheetFunction = <Type extends SheetFunctionType,
@@ -105,7 +106,8 @@ export const createSheetFunction = <Type extends SheetFunctionType,
   outputs: Outputs,
   defaultConfig: Config,
   fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
-  configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel']
+  configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel'],
+  description?: SheetFunction<Type, Inputs, Outputs, Config>['description']
 ): SheetFunction<Type, Inputs, Outputs, Config> => {
   return {
     id,
@@ -115,7 +117,8 @@ export const createSheetFunction = <Type extends SheetFunctionType,
     name,
     defaultConfig,
     fn,
-    configPanel
+    configPanel,
+    description
   }
 }
 
@@ -143,5 +146,7 @@ export const getExample = () => createSheetFunction(
     return {
       output: columns.input.map(item => item.toUpperCase())
     }
-  }
+  },
+  undefined,
+  undefined
 )
