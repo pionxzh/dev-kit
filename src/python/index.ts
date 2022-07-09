@@ -1,5 +1,8 @@
 import { CellType, cellTypes } from '../sheet'
 
+const f = (...args: Parameters<typeof fetch>) => fetch(...args).
+  then(response => response.json())
+
 export type BaseType = 'int' | 'str' | 'float' | 'list' | 'dict' | 'tuple'
 
 export function matchType (type: BaseType): CellType {
@@ -24,11 +27,17 @@ export type FunctionPreview = {
   path: `/param/${string}`
 }
 
-export type ListPostResponse = {
+export type GetListResponse = {
   list: FunctionPreview[]
 }
 
-export type ParamResponse = {
+export function getList (url: URL): Promise<GetListResponse> {
+  return f(url, {
+    method: 'GET'
+  })
+}
+
+export type GetParamResponse = {
   decorated_params: {
     [key: string]: {
       type: 'int' | 'str'
@@ -43,6 +52,28 @@ export type ParamResponse = {
   path: `/call/${string}`
 }
 
+export function getParam (url: URL): Promise<GetParamResponse> {
+  return f(url, {
+    method: 'GET'
+  })
+}
+
 export type CallBody = {
   [x: string]: any
+}
+
+export type PostCallResponse = {
+  [x: string]: any
+}
+
+export function callFunction (
+  url: URL, body: CallBody
+): Promise<PostCallResponse> {
+  return f(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
