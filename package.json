@@ -20,9 +20,13 @@
     "./theme": {
       "import": "./dist/theme/index.js",
       "types": "./dist/theme/index.d.ts"
+    },
+    "./python": {
+      "import": "./dist/python/index.js",
+      "types": "./dist/python/index.d.ts"
     }
   },
-  "repository": "https://github.com/TexteaInc",
+  "repository": "https://github.com/TexteaInc/shared",
   "bugs": {
     "url": "https://github.com/TexteaInc/shared/issues"
   },
@@ -61,7 +65,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "typedoc": "^0.23.2",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.4"
   },
   "packageManager": "yarn@3.2.1"
 }
