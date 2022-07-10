@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Type definitions for Textea packages",
   "license": "MIT",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
