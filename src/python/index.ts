@@ -3,7 +3,7 @@ import { CellType, cellTypes } from '../sheet/index.js'
 const f = (...args: Parameters<typeof fetch>) => fetch(...args).
   then(response => response.json())
 
-export type BaseType = 'int' | 'str' | 'float' | 'list' | 'dict' | 'tuple'
+export type BaseType = 'int' | 'str' | 'list' | 'dict'
 
 export function matchType (type: BaseType): CellType {
   switch (type) {
@@ -22,8 +22,13 @@ export function matchType (type: BaseType): CellType {
   }
 }
 
-export type FunctionPreview = {
+type FunctionPreview = {
+  /**
+   * Unique ID that won't make conflict
+   */
+  id: string
   name: string
+  description: string
   path: `/param/${string}`
 }
 
@@ -31,29 +36,58 @@ export type GetListResponse = {
   list: FunctionPreview[]
 }
 
-export function getList (url: URL): Promise<GetListResponse> {
+export async function getList (
+  url: URL,
+  init?: RequestInit
+): Promise<GetListResponse> {
   return f(url, {
+    ...init,
     method: 'GET'
   })
 }
 
-export type GetParamResponse = {
-  decorated_params: {
+export type FunctionDetail = {
+  /**
+   * Unique ID that won't make conflict
+   */
+  id: string
+  /**
+   * Display Name
+   */
+  name: string
+  /**
+   * Params of the function
+   */
+  params: {
     [key: string]: {
-      type: 'int' | 'str'
+      type: BaseType
       treat_as: 'config' | 'column' | 'cell'
       whitelist?: string[]
       example?: any[]
     }
   }
+  /**
+   * Output data type
+   */
   output_type: {
-    [key: string]: 'int' | 'str'
+    [key: string]: BaseType
   }
-  path: `/call/${string}`
+  /**
+   * Where to call this function
+   */
+  callee: `/call/${string}`
+  /**
+   * Description of this function
+   */
+  description: string
 }
 
-export function getParam (url: URL): Promise<GetParamResponse> {
+export async function getParam (
+  url: URL,
+  init?: RequestInit
+): Promise<FunctionDetail> {
   return f(url, {
+    ...init,
     method: 'GET'
   })
 }
@@ -62,17 +96,27 @@ export type CallBody = {
   [x: string]: any
 }
 
-export type PostCallResponse = {
-  [x: string]: any
+export type PostCallResponseSuccess = {
+  // we cannot find a type that describe different responses
+  [key: string]: any
 }
 
-export function callFunction (
-  url: URL, body: CallBody
+export type PostCallResponseError = {
+  'error_type': 'wrapper' | 'function'
+  'error_body': string
+}
+
+export type PostCallResponse = PostCallResponseSuccess | PostCallResponseError
+
+export async function callFunction (
+  url: URL, body: CallBody, init?: RequestInit
 ): Promise<PostCallResponse> {
   return f(url, {
+    ...init,
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
+      ...init?.headers,
       'Content-Type': 'application/json'
     }
   })
