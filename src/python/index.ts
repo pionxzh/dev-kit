@@ -22,7 +22,7 @@ export function matchType (type: BaseType): CellType {
   }
 }
 
-type FunctionPreview = {
+export type FunctionPreview = {
   /**
    * Unique ID that won't make conflict
    */
