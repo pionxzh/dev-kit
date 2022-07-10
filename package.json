@@ -34,7 +34,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "postinstall": "npx npm-install-peers",
