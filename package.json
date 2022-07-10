@@ -6,24 +6,24 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     },
     "./sheet": {
-      "import": "./dist/sheet/index.js",
-      "types": "./dist/sheet/index.d.ts"
+      "types": "./dist/sheet/index.d.mts",
+      "import": "./dist/sheet/index.mjs"
     },
     "./api": {
-      "import": "./dist/api/index.js",
-      "types": "./dist/api/index.d.ts"
+      "types": "./dist/api/index.d.mts",
+      "import": "./dist/api/index.mjs"
     },
     "./theme": {
-      "import": "./dist/theme/index.js",
-      "types": "./dist/theme/index.d.ts"
+      "types": "./dist/theme/index.d.mts",
+      "import": "./dist/theme/index.mjs"
     },
     "./python": {
-      "import": "./dist/python/index.js",
-      "types": "./dist/python/index.d.ts"
+      "types": "./dist/python/index.d.mts",
+      "import": "./dist/python/index.mjs"
     }
   },
   "repository": "https://github.com/TexteaInc/shared",
@@ -34,8 +34,6 @@
   "files": [
     "dist"
   ],
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "postinstall": "npx npm-install-peers",
     "build": "tsc",
