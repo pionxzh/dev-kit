@@ -3,7 +3,7 @@ import { CellType, cellTypes } from '../sheet/index.mjs'
 const f = (...args: Parameters<typeof fetch>) => fetch(...args).
   then(response => response.json())
 
-export type BaseType = 'int' | 'str' | 'list' | 'dict'
+export type BaseType = 'int' | 'str' | `list[${string}]` | 'dict'
 
 export function matchType (type: BaseType): CellType {
   switch (type) {
@@ -46,6 +46,13 @@ export async function getList (
   })
 }
 
+export type Param = {
+  type: BaseType
+  treat_as: 'config' | 'column' | 'cell'
+  whitelist?: string[]
+  example?: any[]
+}
+
 export type FunctionDetail = {
   /**
    * Unique ID that won't make conflict
@@ -58,14 +65,7 @@ export type FunctionDetail = {
   /**
    * Params of the function
    */
-  params: {
-    [key: string]: {
-      type: BaseType
-      treat_as: 'config' | 'column' | 'cell'
-      whitelist?: string[]
-      example?: any[]
-    }
-  }
+  params: Record<string, Param>
   /**
    * Output data type
    */
