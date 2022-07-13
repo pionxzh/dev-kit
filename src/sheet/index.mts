@@ -8,6 +8,14 @@ export const cellTypes = {
   String: '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0'
 } as const
 
+export const typeNames = {
+  '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0': 'string',
+  '1b692f8e-6f4d-4708-bf04-e624e7101a3d': 'boolean',
+  'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001': 'object',
+  '21112007-716a-4c28-80f3-a058aea50a0b': 'number',
+  '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0': 'string'
+} as const
+
 export type CellTypes = typeof cellTypes
 export type CellTypesKeys = keyof CellTypes
 export type CellType = CellTypes[CellTypesKeys]
