@@ -1,4 +1,4 @@
-import { CellType, cellTypes } from '../sheet/index.mjs'
+import { CellType, baseCellTypes } from '../sheet/index.mjs'
 
 const f = (...args: Parameters<typeof fetch>) => fetch(...args).
   then(response => response.json())
@@ -8,16 +8,16 @@ export type BaseType = 'int' | 'str' | `list[${string}]` | 'dict'
 export function matchType (type: BaseType): CellType {
   switch (type) {
     case 'str': {
-      return cellTypes.String
+      return new baseCellTypes.String()
     }
     case 'int': {
-      return cellTypes.Number
+      return new baseCellTypes.Number()
     }
     case 'list': {
-      return cellTypes.Array
+      return new baseCellTypes.Array()
     }
     default: {
-      return cellTypes.String
+      return new baseCellTypes.String()
     }
   }
 }

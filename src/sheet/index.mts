@@ -1,24 +1,65 @@
 import type { FC } from 'react'
 
-export const cellTypes = {
-  Array: '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0',
-  Boolean: '1b692f8e-6f4d-4708-bf04-e624e7101a3d',
-  Json: 'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001',
-  Number: '21112007-716a-4c28-80f3-a058aea50a0b',
-  String: '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0'
+export abstract class CellType<Value = unknown> {
+  public readonly abstract id: string
+  public readonly abstract displayName: string
+  public readonly abstract defaultValue: Value
+
+  public abstract validate: (value: unknown) => value is Value
+
+  public is<Type extends CellType> (t: Type): this is Type {
+    return this instanceof t.constructor
+  }
+}
+
+export class NumberCellType extends CellType<number> {
+  id = '21112007-716a-4c28-80f3-a058aea50a0b'
+  displayName = 'number'
+  defaultValue = 0
+  validate = (value: unknown): value is number => typeof value === 'number'
+}
+
+export class StringCellType extends CellType<string> {
+  id = '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0'
+  displayName = 'string'
+  defaultValue = ''
+  validate = (value: unknown): value is string => typeof value === 'string'
+}
+
+export class ObjectCellType extends CellType<Record<string, unknown>> {
+  id = 'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001'
+  // name in `python`
+  displayName = 'dict'
+  defaultValue = {}
+  validate = (value: unknown): value is Record<string, unknown> => typeof value ===
+    'object'
+}
+
+export class BooleanCellType extends CellType<boolean> {
+  id = '1b692f8e-6f4d-4708-bf04-e624e7101a3d'
+  displayName = 'boolean'
+  defaultValue = false
+  validate = (value: unknown): value is boolean => typeof value === 'boolean'
+}
+
+export class ArrayCellType extends CellType<unknown[]> {
+  id = '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0'
+  displayName = 'array'
+  defaultValue = []
+  validate = (value: unknown): value is unknown[] => Array.isArray(value)
+}
+
+export const baseCellTypes = {
+  Array: ArrayCellType,
+  Boolean: BooleanCellType,
+  Object: ObjectCellType,
+  Number: NumberCellType,
+  String: StringCellType
 } as const
 
-export const typeNames = {
-  '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0': 'string',
-  '1b692f8e-6f4d-4708-bf04-e624e7101a3d': 'boolean',
-  'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001': 'object',
-  '21112007-716a-4c28-80f3-a058aea50a0b': 'number',
-  '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0': 'string'
-} as const
-
-export type CellTypes = typeof cellTypes
-export type CellTypesKeys = keyof CellTypes
-export type CellType = CellTypes[CellTypesKeys]
+export type BaseCellTypes = typeof baseCellTypes
+export type BaseCellTypesKeys = keyof BaseCellTypes
+export type BaseCellType = BaseCellTypes[BaseCellTypesKeys]
 
 export type Cell =
   (undefined | null | boolean | string | number | object)
@@ -64,12 +105,10 @@ export type ObjValueTuple<T, KS extends any[] = TupleUnion<keyof T>, R extends a
     : R
 
 export type InferIOItemToJSType<T extends IOItem> =
-  T extends { type: infer U } ? U extends CellTypes['Array']
-      ? unknown[] : U extends CellTypes['Boolean']
-        ? boolean : U extends CellTypes['Json']
-          ? object : U extends CellTypes['Number']
-            ? number : U extends CellTypes['String']
-              ? string : never
+  T extends { type: infer U }
+    ? U extends CellType<infer V>
+      ? V
+      : never
     : never
 
 export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
@@ -139,13 +178,13 @@ export const getExample = () => createSheetFunction(
   'map',
   {
     input: {
-      type: cellTypes.String,
+      type: new baseCellTypes.String(),
       name: 'input column'
     }
   },
   {
     output: {
-      type: cellTypes.String,
+      type: new baseCellTypes.String(),
       name: 'output column'
     }
   },
