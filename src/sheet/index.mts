@@ -1,32 +1,32 @@
 import type { FC } from 'react'
 
-export abstract class CellType<Value = unknown> {
+export abstract class AbstractCellType<Value = unknown> {
   public readonly abstract id: string
   public readonly abstract displayName: string
   public readonly abstract defaultValue: Value
 
   public abstract validate: (value: unknown) => value is Value
 
-  public is<Type extends CellType> (t: Type): this is Type {
+  public is<Type extends AbstractCellType> (t: Type): this is Type {
     return this instanceof t.constructor
   }
 }
 
-export class NumberCellType extends CellType<number> {
+export class NumberCellType extends AbstractCellType<number> {
   id = '21112007-716a-4c28-80f3-a058aea50a0b'
   displayName = 'number'
   defaultValue = 0
   validate = (value: unknown): value is number => typeof value === 'number'
 }
 
-export class StringCellType extends CellType<string> {
+export class StringCellType extends AbstractCellType<string> {
   id = '00bfb075-9d08-4ab6-ba2d-f7bcccdb09b0'
   displayName = 'string'
   defaultValue = ''
   validate = (value: unknown): value is string => typeof value === 'string'
 }
 
-export class ObjectCellType extends CellType<Record<string, unknown>> {
+export class ObjectCellType extends AbstractCellType<Record<string, unknown>> {
   id = 'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001'
   // name in `python`
   displayName = 'dict'
@@ -35,14 +35,14 @@ export class ObjectCellType extends CellType<Record<string, unknown>> {
     'object'
 }
 
-export class BooleanCellType extends CellType<boolean> {
+export class BooleanCellType extends AbstractCellType<boolean> {
   id = '1b692f8e-6f4d-4708-bf04-e624e7101a3d'
   displayName = 'boolean'
   defaultValue = false
   validate = (value: unknown): value is boolean => typeof value === 'boolean'
 }
 
-export class ArrayCellType extends CellType<unknown[]> {
+export class ArrayCellType extends AbstractCellType<unknown[]> {
   id = '6f84aa0b-aa88-48e3-96f8-c19f00f60ee0'
   displayName = 'array'
   defaultValue = []
@@ -59,7 +59,7 @@ export const baseCellTypes = {
 
 export type BaseCellTypes = typeof baseCellTypes
 export type BaseCellTypesKeys = keyof BaseCellTypes
-export type BaseCellType = BaseCellTypes[BaseCellTypesKeys]
+export type BaseCellType = InstanceType<BaseCellTypes[BaseCellTypesKeys]>
 
 export type Cell =
   (undefined | null | boolean | string | number | object)
@@ -74,7 +74,7 @@ export type ConfigPanelProps<Config extends Record<string, unknown>> = {
 }
 
 export type IOItem = {
-  type: CellType
+  type: BaseCellType
   name: string
 }
 
@@ -106,7 +106,7 @@ export type ObjValueTuple<T, KS extends any[] = TupleUnion<keyof T>, R extends a
 
 export type InferIOItemToJSType<T extends IOItem> =
   T extends { type: infer U }
-    ? U extends CellType<infer V>
+    ? U extends AbstractCellType<infer V>
       ? V
       : never
     : never

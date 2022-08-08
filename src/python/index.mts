@@ -1,11 +1,11 @@
-import { CellType, baseCellTypes } from '../sheet/index.mjs'
+import { BaseCellType, baseCellTypes } from '../sheet/index.mjs'
 
 const f = (...args: Parameters<typeof fetch>) => fetch(...args).
   then(response => response.json())
 
 export type BaseType = 'int' | 'str' | `list[${string}]` | 'dict'
 
-export function matchType (type: BaseType): CellType {
+export function matchType (type: BaseType): BaseCellType {
   switch (type) {
     case 'str': {
       return new baseCellTypes.String()
