@@ -13,6 +13,9 @@ export function matchType (type: BaseType): BaseCellType {
     case 'int': {
       return new baseCellTypes.Number()
     }
+    case 'typing.List[int]': {
+      return new baseCellTypes.Number()
+    }
     case 'list': {
       return new baseCellTypes.Array()
     }
