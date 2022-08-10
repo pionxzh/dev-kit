@@ -1,3 +1,3 @@
-# shared
+# @textea/shared
 
-> Type definitions for both NLPDev backend and frontend
+> Toolkit for developing Augmented `Textea` Products.
