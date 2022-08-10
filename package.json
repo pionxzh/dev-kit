@@ -1,6 +1,6 @@
 {
   "name": "@textea/shared",
-  "version": "0.10.0-alpha.2",
+  "version": "0.10.0-alpha.5",
   "type": "module",
   "description": "Type definitions for Textea packages",
   "license": "MIT",
@@ -41,6 +41,7 @@
     "build": "env-cmd -e production run-s clean build:tsc build:rollup",
     "build:rollup": "rollup -c -m",
     "build:tsc": "tsc -p tsconfig.json",
+    "test": "vitest",
     "clean": "rimraf ./dist",
     "start": "env-cmd -e development run-p start:tsc start:rollup",
     "start:rollup": "rollup -c -w",
@@ -54,35 +55,48 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "@emotion/react": "*",
+    "@emotion/styled": "*",
     "@mui/material": ">=5.9.0",
     "@types/react": ">=18.0.15",
-    "@types/web": ">=0.0.69"
+    "@types/uuid": ">=8.3.4",
+    "@types/web": ">=0.0.69",
+    "uuid": ">=8.3.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-angular": "^17.0.3",
     "@discordjs/ts-docgen": "^0.4.1",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.9.0",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
-    "@types/react": "^18.0.15",
+    "@types/react": "^18.0.17",
+    "@types/uuid": "^8.3.4",
     "@types/web": "^0.0.69",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "env-cmd": "^10.1.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
+    "expect-type": "^0.13.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.77.0",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-typescript2": "^0.32.1",
+    "ts-node": "^10.9.1",
     "typedoc": "^0.23.7",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "uuid": "^8.3.2",
+    "vitest": "^0.21.1"
   },
   "packageManager": "yarn@3.2.1"
 }

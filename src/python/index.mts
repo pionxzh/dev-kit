@@ -8,19 +8,19 @@ export type BaseType = 'int' | 'str' | `list[${string}]` | 'dict'
 export function matchType (type: BaseType): BaseCellType {
   switch (type) {
     case 'str': {
-      return new baseCellTypes.String()
+      return baseCellTypes.string
     }
     case 'int': {
-      return new baseCellTypes.Number()
+      return baseCellTypes.number
     }
     case 'typing.List[int]': {
-      return new baseCellTypes.Number()
+      return baseCellTypes.number
     }
     case 'list': {
-      return new baseCellTypes.Array()
+      return baseCellTypes.array
     }
     default: {
-      return new baseCellTypes.String()
+      return baseCellTypes.string
     }
   }
 }
