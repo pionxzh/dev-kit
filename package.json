@@ -1,8 +1,8 @@
 {
-  "name": "@textea/shared",
+  "name": "@textea/dev-kit",
   "version": "0.10.0-alpha.5",
   "type": "module",
-  "description": "Type definitions for Textea packages",
+  "description": "Toolkit for developing Augmented Textea Products.",
   "license": "MIT",
   "main": "./dist/umd/index.cjs",
   "module": "./dist/es/index.mjs",
@@ -57,11 +57,8 @@
   "peerDependencies": {
     "@emotion/react": "*",
     "@emotion/styled": "*",
-    "@mui/material": ">=5.9.0",
-    "@types/react": ">=18.0.15",
-    "@types/uuid": ">=8.3.4",
-    "@types/web": ">=0.0.69",
-    "uuid": ">=8.3.2"
+    "@mui/material": "^5",
+    "uuid": "^8"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -73,9 +70,10 @@
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
+    "@types/node": "^18.7.1",
     "@types/react": "^18.0.17",
     "@types/uuid": "^8.3.4",
-    "@types/web": "^0.0.69",
+    "@types/web": "^0.0.71",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "env-cmd": "^10.1.0",

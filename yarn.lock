@@ -854,9 +854,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@textea/shared@workspace:.":
+"@textea/dev-kit@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@textea/shared@workspace:."
+  resolution: "@textea/dev-kit@workspace:."
   dependencies:
     "@commitlint/cli": ^17.0.3
     "@commitlint/config-angular": ^17.0.3
@@ -867,9 +867,10 @@ __metadata:
     "@rollup/plugin-commonjs": ^22.0.1
     "@rollup/plugin-node-resolve": ^13.3.0
     "@rollup/plugin-replace": ^4.0.0
+    "@types/node": ^18.7.1
     "@types/react": ^18.0.17
     "@types/uuid": ^8.3.4
-    "@types/web": ^0.0.69
+    "@types/web": ^0.0.71
     "@typescript-eslint/eslint-plugin": ^5.30.6
     "@typescript-eslint/parser": ^5.30.6
     env-cmd: ^10.1.0
@@ -894,11 +895,8 @@ __metadata:
   peerDependencies:
     "@emotion/react": "*"
     "@emotion/styled": "*"
-    "@mui/material": ">=5.9.0"
-    "@types/react": ">=18.0.15"
-    "@types/uuid": ">=8.3.4"
-    "@types/web": ">=0.0.69"
-    uuid: ">=8.3.2"
+    "@mui/material": ^5
+    uuid: ^8
   languageName: unknown
   linkType: soft
 
@@ -995,6 +993,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^18.7.1":
+  version: 18.7.1
+  resolution: "@types/node@npm:18.7.1"
+  checksum: f1e2b701b107f97be01da4c46845cd23bcdcb2865f9abbb2847546d09587e726ea207daca6f0d1e72196875ef8c62feeeff5f1c1f2070445acd6d1a61d815c7c
+  languageName: node
+  linkType: hard
+
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
@@ -1079,10 +1084,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/web@npm:^0.0.69":
-  version: 0.0.69
-  resolution: "@types/web@npm:0.0.69"
-  checksum: c4b1cc17ade364ed53e64673b7dde8e8439f8eafda2c7eb9c45201248b7fbd7a49977693cc45a265ecb1af65a7802e166fbd0e16952f247d5eacc8d981db58b7
+"@types/web@npm:^0.0.71":
+  version: 0.0.71
+  resolution: "@types/web@npm:0.0.71"
+  checksum: eacf6c5944b60fc15f3ec723d1d72fc822b4813dca53244c98be56aabf6f20f0aa0d611311209e9bc126f48633a66f1d6565746ec4adf598df4cf1c21114d82b
   languageName: node
   linkType: hard
 
