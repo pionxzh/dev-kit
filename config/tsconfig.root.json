@@ -1,0 +1,66 @@
+{
+  "compilerOptions": {
+    // Classification follows https://www.typescriptlang.org/tsconfig
+
+    // Type Checking
+    "strict": true,
+    // exactOptionalPropertyTypes: false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    // noPropertyAccessFromIndexSignature: false,
+    // noUncheckedIndexedAccess: false,
+    // noUnusedLocals: false,
+    // noUnusedParameters: false,
+    "useUnknownInCatchVariables": true,
+    // Modules
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    // Exclude everything by default. Include them in each project on-demand
+    "types": ["web"],
+    // Emit
+    "declaration": true,
+    "declarationMap": true,
+    "importsNotUsedAsValues": "error",
+    "noEmitOnError": true,
+    // "preserveValueImports": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    // skip type emit for @internal types
+
+    // JavaScript Support
+    "allowJs": true,
+    "checkJs": false,
+    // Interop Constraints
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    // Language and Environment
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
+    "lib": [
+      // don't add "DOM", we use @types/web
+      "ES2022"
+    ],
+    "target": "ES2021",
+    "useDefineForClassFields": true,
+    // Projects
+    // Disable this because Next.js doesn't fully support this
+    "composite": false,
+    "incremental": true,
+    // Completeness
+    "skipLibCheck": true
+    // skip all type checks for .d.ts files
+  },
+  "exclude": ["**/node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "swc": true,
+    "transpileOnly": true
+  }
+}
