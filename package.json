@@ -1,7 +1,6 @@
 {
   "name": "@textea/dev-kit",
-  "version": "0.11.1",
-  "type": "module",
+  "version": "0.11.2",
   "description": "Toolkit for developing Augmented Textea Products.",
   "license": "MIT",
   "main": "./dist/umd/index.cjs",
