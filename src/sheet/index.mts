@@ -40,6 +40,11 @@ export function defineCellType<Value> (
   if (!isUUID(id)) {
     throw new TypeError(`'id' is not a uuid`)
   } else if (typeRegistry.has(id)) {
+    if (typeof window === 'undefined') {
+      // Server Side Rendering
+      //  early return
+      return typeRegistry.get(id)!
+    }
     throw new Error(`'id' ${id} already exists`)
   } else {
     let SuperCellType: CellTypeConstructor
