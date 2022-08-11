@@ -35,7 +35,8 @@
   },
   "homepage": "https://github.com/TexteaInc/shared#readme",
   "files": [
-    "dist"
+    "dist",
+    "config"
   ],
   "scripts": {
     "build": "env-cmd -e production run-s clean build:tsc build:rollup",
