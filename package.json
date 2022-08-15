@@ -15,10 +15,6 @@
       "types": "./dist/es/sheet/index.d.mts",
       "import": "./dist/es/sheet/index.mjs"
     },
-    "./api": {
-      "types": "./dist/es/api/index.d.mts",
-      "import": "./dist/es/api/index.mjs"
-    },
     "./theme": {
       "types": "./dist/es/theme/index.d.mts",
       "import": "./dist/es/theme/index.mjs"
