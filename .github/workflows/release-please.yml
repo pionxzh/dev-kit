@@ -11,7 +11,7 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: @textea/dev-kit
+          package-name: '@textea/dev-kit'
           token: ${{secrets.GITHUB_TOKEN}}
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
