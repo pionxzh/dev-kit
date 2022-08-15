@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.6](https://github.com/TexteaInc/dev-kit/compare/v0.11.5...v0.11.6) (2022-08-15)
+
+
+### Features
+
+* remove `api` ([b2a85fd](https://github.com/TexteaInc/dev-kit/commit/b2a85fd2bc8a0ce9c6f55013216950913bb3752c))
+
 ## [0.11.5](https://github.com/TexteaInc/dev-kit/compare/v0.11.4...v0.11.5) (2022-08-15)
 
 
