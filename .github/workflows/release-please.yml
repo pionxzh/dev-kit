@@ -6,6 +6,7 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    environment: Publish
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -15,7 +16,7 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
-          draft: true
+          draft: false
       - name: Checkout repository
         uses: actions/checkout@v2
         if: ${{ steps.release.outputs.release_created }}
