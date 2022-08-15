@@ -26,7 +26,8 @@
     "./python": {
       "types": "./dist/es/python/index.d.mts",
       "import": "./dist/es/python/index.mjs"
-    }
+    },
+    "./config/*": "./config/*"
   },
   "repository": "https://github.com/TexteaInc/shared",
   "bugs": {
