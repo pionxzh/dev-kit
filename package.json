@@ -29,11 +29,11 @@
     },
     "./config/*": "./config/*"
   },
-  "repository": "https://github.com/TexteaInc/shared",
+  "repository": "https://github.com/TexteaInc/dev-kit",
   "bugs": {
-    "url": "https://github.com/TexteaInc/shared/issues"
+    "url": "https://github.com/TexteaInc/dev-kit/issues"
   },
-  "homepage": "https://github.com/TexteaInc/shared#readme",
+  "homepage": "https://github.com/TexteaInc/dev-kit#readme",
   "files": [
     "dist",
     "config"
