@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.8](https://github.com/TexteaInc/dev-kit/compare/v0.11.7...v0.11.8) (2022-08-23)
+
+
+### Features
+
+* add utils ([#21](https://github.com/TexteaInc/dev-kit/issues/21)) ([058fd40](https://github.com/TexteaInc/dev-kit/commit/058fd40dd68f782bad25c1d3ccf9610c821fddf9))
+
 ## [0.11.7](https://github.com/TexteaInc/dev-kit/compare/v0.11.6...v0.11.7) (2022-08-16)
 
 
