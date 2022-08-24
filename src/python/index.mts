@@ -3,7 +3,8 @@ import { baseCellTypes, CellType } from '../sheet/index.mjs'
 const f = (...args: Parameters<typeof fetch>) => fetch(...args)
   .then(response => response.json())
 
-export type PyType = 'int' | 'str' | 'list' | 'dict' | 'typing.List[int]' | 'typing.List[str]'
+export type BaseType = 'int' | 'str' | 'list' | 'dict'
+export type PyType = BaseType | `typing.List[${BaseType}]`
 
 export function matchType (type: PyType): CellType {
   switch (type) {
@@ -62,6 +63,8 @@ export type FunctionDetail = {
    * Display Name
    */
   name: string
+  // fixme: remove null
+  destination: null | string
   /**
    * Params of the function
    */
@@ -76,17 +79,18 @@ export type FunctionDetail = {
   /**
    * Output data type
    */
-  output_type: {
+  return_type: {
     [key: string]: PyType
   }
-  /**
-   * Where to call this function
-   */
-  callee: `/call/${string}`
   /**
    * Description of this function
    */
   description: string
+  /**
+   * Json Schema
+   *  Refs: https://json-schema.org/
+   */
+  schema: Record<string, any>
 }
 
 export async function getParam (
