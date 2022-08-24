@@ -1,20 +1,20 @@
 module.exports = {
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   extends: ['eslint:recommended', 'plugin:react/recommended', 'standard'],
   globals: {
-    Atomics: 'readonly', SharedArrayBuffer: 'readonly',
+    Atomics: 'readonly', SharedArrayBuffer: 'readonly'
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      globalReturn: false, impliedStrict: true, jsx: true,
+      globalReturn: false, impliedStrict: true, jsx: true
     },
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    sourceType: 'module'
   },
   plugins: [
     'react',
@@ -22,7 +22,7 @@ module.exports = {
     '@typescript-eslint',
     'simple-import-sort',
     'import',
-    'unused-imports',
+    'unused-imports'
   ],
   rules: {
     eqeqeq: 'error',
@@ -43,7 +43,7 @@ module.exports = {
         vars: 'all',
         varsIgnorePattern: '^_',
         args: 'after-used',
-        argsIgnorePattern: '^_',
+        argsIgnorePattern: '^_'
       }],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
@@ -52,7 +52,7 @@ module.exports = {
     'no-unused-expressions': 'warn',
     'react/jsx-filename-extension': [
       1, {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
       }],
     'import/prefer-default-export': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
@@ -65,11 +65,11 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': [
       'error', {
         multiline: {
-          delimiter: 'none', requireLast: true,
+          delimiter: 'none', requireLast: true
         },
         singleline: {
-          delimiter: 'semi', requireLast: false,
-        },
+          delimiter: 'semi', requireLast: false
+        }
       }],
     '@typescript-eslint/explicit-function-return-type': 'off',
     'react-hooks/rules-of-hooks': 'error',
@@ -82,20 +82,21 @@ module.exports = {
           {
             group: ['**/dist'],
             message: 'Don\'t import from dist',
-            allowTypeImports: false,
-          },
-        ],
-      },
-    ],
+            allowTypeImports: false
+          }
+        ]
+      }
+    ]
   },
   overrides: [
     {
       files: ['*.d.ts'],
       rules: {
-        'no-undef': 'off',
-      },
-    }, {
-      files: ['*.test.ts', '*.test.tsx'], env: { jest: true },
-    }],
+        'no-undef': 'off'
+      }
+    },
+    {
+      files: ['*.test.ts', '*.test.tsx'], env: { jest: true }
+    }
+  ]
 }
-

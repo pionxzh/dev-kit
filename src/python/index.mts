@@ -1,19 +1,16 @@
-import { BaseCellType, baseCellTypes } from '../sheet/index.mjs'
+import { baseCellTypes, CellType } from '../sheet/index.mjs'
 
-const f = (...args: Parameters<typeof fetch>) => fetch(...args).
-  then(response => response.json())
+const f = (...args: Parameters<typeof fetch>) => fetch(...args)
+  .then(response => response.json())
 
-export type BaseType = 'int' | 'str' | `list[${string}]` | 'dict'
+export type PyType = 'int' | 'str' | 'list' | 'dict' | 'typing.List[int]' | 'typing.List[str]'
 
-export function matchType (type: BaseType): BaseCellType {
+export function matchType (type: PyType): CellType {
   switch (type) {
     case 'str': {
       return baseCellTypes.string
     }
     case 'int': {
-      return baseCellTypes.number
-    }
-    case 'typing.List[int]': {
       return baseCellTypes.number
     }
     case 'list': {
@@ -50,7 +47,7 @@ export async function getList (
 }
 
 export type Param = {
-  type: BaseType
+  type: PyType
   treat_as: 'config' | 'column' | 'cell'
   whitelist?: string[]
   example?: any[]
@@ -68,12 +65,19 @@ export type FunctionDetail = {
   /**
    * Params of the function
    */
-  params: Record<string, Param>
+  params: {
+    [key: string]: {
+      type: PyType
+      treat_as: 'config' | 'column' | 'cell'
+      whitelist?: string[]
+      example?: any[]
+    }
+  }
   /**
    * Output data type
    */
   output_type: {
-    [key: string]: BaseType
+    [key: string]: PyType
   }
   /**
    * Where to call this function
