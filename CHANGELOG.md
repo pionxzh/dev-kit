@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.10](https://github.com/TexteaInc/dev-kit/compare/v0.11.9...v0.11.10) (2022-08-24)
+
+
+### Bug Fixes
+
+* port pydatafront type into latest ([c898d46](https://github.com/TexteaInc/dev-kit/commit/c898d46c36edd2d856e39448feb5ea007762885a))
+
 ## [0.11.9](https://github.com/TexteaInc/dev-kit/compare/v0.11.8...v0.11.9) (2022-08-24)
 
 
