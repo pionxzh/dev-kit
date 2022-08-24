@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.9](https://github.com/TexteaInc/dev-kit/compare/v0.11.8...v0.11.9) (2022-08-24)
+
+
+### Features
+
+* port to pydatafront official version ([35c40f5](https://github.com/TexteaInc/dev-kit/commit/35c40f59a99be3682d3e1ce6e6be7ed0d1550bc0))
+
 ## [0.11.8](https://github.com/TexteaInc/dev-kit/compare/v0.11.7...v0.11.8) (2022-08-23)
 
 
