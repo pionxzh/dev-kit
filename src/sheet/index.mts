@@ -38,7 +38,7 @@ export function defineCellType<Value> (
   extended?: CellType<Value>
 ): CellType<Value> {
   if (!isUUID(id)) {
-    throw new TypeError(`'id' is not a uuid`)
+    throw new TypeError('\'id\' is not a uuid')
   } else if (typeRegistry.has(id)) {
     if (typeof window === 'undefined') {
       // Server Side Rendering
@@ -50,7 +50,7 @@ export function defineCellType<Value> (
     let SuperCellType: CellTypeConstructor
     if (extended) {
       if (!isCellTypeConstructor(extended.constructor)) {
-        throw new TypeError(`'extended' is not an instance of 'AbstractCellType'`)
+        throw new TypeError('\'extended\' is not an instance of \'AbstractCellType\'')
       }
       SuperCellType = extended.constructor
     } else {
@@ -61,7 +61,7 @@ export function defineCellType<Value> (
       displayName = displayName
       defaultValue = defaultValue
       validate = validate
-    })
+    })()
     typeRegistry.set(id, cellType)
     return cellType
   }
@@ -81,7 +81,7 @@ export const stringCellType = defineCellType<string>(
   (value): value is string => typeof value === 'string'
 )
 
-export const objectCellType = defineCellType<object>(
+export const objectCellType = defineCellType<Record<string, unknown>>(
   'e01e830e-8dd5-4c2e-a8eb-dc3945d8c001',
   // name in `python`
   'dict',
@@ -191,7 +191,7 @@ export interface SheetFunction<Type extends SheetFunctionType = SheetFunctionTyp
     columns: Columns<Inputs>,
     config: Config) => Promise<Columns<Outputs>>
   defaultConfig: Config
-  configPanel: FC<ConfigPanelProps<Config>> | undefined,
+  configPanel: FC<ConfigPanelProps<Config>> | undefined
   description: string | undefined
 }
 
@@ -199,17 +199,17 @@ export const createSheetFunction = <Type extends SheetFunctionType,
   Inputs extends IO,
   Outputs extends IO,
   Config extends Record<string, unknown>>
-(
-  id: string,
-  name: string,
-  type: Type,
-  inputs: Inputs,
-  outputs: Outputs,
-  defaultConfig: Config,
-  fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
-  configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel'],
-  description?: SheetFunction<Type, Inputs, Outputs, Config>['description']
-): SheetFunction<Type, Inputs, Outputs, Config> => {
+  (
+    id: string,
+    name: string,
+    type: Type,
+    inputs: Inputs,
+    outputs: Outputs,
+    defaultConfig: Config,
+    fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
+    configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel'],
+    description?: SheetFunction<Type, Inputs, Outputs, Config>['description']
+  ): SheetFunction<Type, Inputs, Outputs, Config> => {
   return {
     id,
     type,
