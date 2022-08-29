@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.11](https://github.com/TexteaInc/dev-kit/compare/v0.11.10...v0.11.11) (2022-08-29)
+
+
+### Bug Fixes
+
+* object type to `Record<string, unknown>` ([7bbe290](https://github.com/TexteaInc/dev-kit/commit/7bbe29050eca95c6066638d4c15291735d09367c))
+
 ## [0.11.10](https://github.com/TexteaInc/dev-kit/compare/v0.11.9...v0.11.10) (2022-08-24)
 
 
