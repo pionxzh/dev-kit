@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { validate as isUUID } from 'uuid'
 
-export const typeRegistry = new Map<string, CellType<any, any>>()
+export const typeRegistry = new Map<string, CellType>()
 
-export interface CellType<Value extends BaseValue, BaseValue= unknown> {
+export interface CellType<Value extends BaseValue = any, BaseValue = any> {
   readonly id: string
   readonly displayName: string
   readonly defaultValue: Value
@@ -12,12 +12,13 @@ export interface CellType<Value extends BaseValue, BaseValue= unknown> {
   is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType
 }
 
-export abstract class AbstractCellType<Value extends BaseValue, BaseValue= unknown> implements CellType<Value, BaseValue> {
+export abstract class AbstractCellType<Value extends BaseValue, BaseValue = unknown> implements CellType<Value, BaseValue> {
   public readonly abstract id: string
   public readonly abstract displayName: string
   public readonly abstract defaultValue: Value
 
   public abstract validate: (value: BaseValue) => value is Value
+
   public is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType {
     return this instanceof t.constructor
   }
@@ -49,13 +50,14 @@ export function defineCellType<Value extends BaseValue, BaseValue = unknown> (
     let SuperCellType: CellTypeConstructor
     if (extended) {
       if (!isCellTypeConstructor(extended.constructor)) {
-        throw new TypeError('\'extended\' is not an instance of \'AbstractCellType\'')
+        throw new TypeError(
+          '\'extended\' is not an instance of \'AbstractCellType\'')
       }
       SuperCellType = extended.constructor
     } else {
       SuperCellType = AbstractCellType
     }
-    const cellType = new (class extends SuperCellType<Value, BaseValue> {
+    const cellType: CellType<Value, BaseValue> = new (class extends SuperCellType<Value, BaseValue> {
       id = id
       displayName = displayName
       defaultValue = defaultValue
@@ -128,7 +130,7 @@ export type IO = {
   [key: string]: IOItem
 }
 
-export type SheetFunctionType = 'map' | 'reduce' | 'transform'
+export type SheetFunctionType = 'map' | 'reduce'
 
 export type InferIOItemToJSType<T extends IOItem> =
   T extends { type: infer U }
@@ -141,16 +143,14 @@ export type Columns<T extends IO> = {
   [Key in keyof T]: InferIOItemToJSType<T[Key]>[]
 }
 
-// fixme: if type is reduce, output a cell or cell array instead of columns
-export interface SheetFunction<Type extends SheetFunctionType = SheetFunctionType,
-  Inputs extends IO = IO,
+export interface SheetMapFunction<Inputs extends IO = IO,
   Outputs extends IO = IO,
   Config extends Record<string, unknown> = Record<string, any>> {
   /**
    * UUID4
    */
   id: string
-  type: Type
+  type: 'map'
   name: string
   inputs: Inputs
   outputs: Outputs
@@ -162,26 +162,70 @@ export interface SheetFunction<Type extends SheetFunctionType = SheetFunctionTyp
   description: string | undefined
 }
 
-export const createSheetFunction = <Type extends SheetFunctionType,
-  Inputs extends IO,
+export interface SheetReduceFunction<Inputs extends IOItem = IOItem,
+  Outputs extends IOItem = IOItem,
+  Config extends Record<string, unknown> = Record<string, any>> {
+  /**
+   * UUID4
+   */
+  id: string
+  type: 'reduce'
+  name: string
+  input: Inputs
+  output: Outputs
+  fn: (
+    column: InferIOItemToJSType<Inputs>[],
+    config: Config) => Promise<InferIOItemToJSType<Outputs>>
+  defaultConfig: Config
+  configPanel: FC<ConfigPanelProps<Config>> | undefined
+  description: string | undefined
+}
+
+export type SheetFunction = SheetReduceFunction | SheetMapFunction
+
+export function createSheetFunction<Inputs extends IOItem = IOItem,
+  Outputs extends IOItem = IOItem,
+  Config extends Record<string, unknown> = Record<string, any>> (
+  id: string,
+  name: string,
+  type: 'reduce',
+  input: Inputs,
+  output: Outputs,
+  defaultConfig: Config,
+  fn: SheetReduceFunction<Inputs, Outputs, Config>['fn'],
+  configPanel?: SheetReduceFunction<Inputs, Outputs, Config>['configPanel'],
+  description?: SheetReduceFunction<Inputs, Outputs, Config>['description']
+): SheetReduceFunction<Inputs, Outputs, Config>
+export function createSheetFunction<Inputs extends IO,
   Outputs extends IO,
-  Config extends Record<string, unknown>>
-  (
-    id: string,
-    name: string,
-    type: Type,
-    inputs: Inputs,
-    outputs: Outputs,
-    defaultConfig: Config,
-    fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
-    configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel'],
-    description?: SheetFunction<Type, Inputs, Outputs, Config>['description']
-  ): SheetFunction<Type, Inputs, Outputs, Config> => {
+  Config extends Record<string, unknown>> (
+  id: string,
+  name: string,
+  type: 'map',
+  inputs: Inputs,
+  outputs: Outputs,
+  defaultConfig: Config,
+  fn: SheetMapFunction<Inputs, Outputs, Config>['fn'],
+  configPanel?: SheetMapFunction<Inputs, Outputs, Config>['configPanel'],
+  description?: SheetMapFunction<Inputs, Outputs, Config>['description']
+): SheetMapFunction<Inputs, Outputs, Config>
+export function createSheetFunction
+(
+  id: string,
+  name: string,
+  type: any,
+  inputs: any,
+  outputs: any,
+  defaultConfig: any,
+  fn: any,
+  configPanel?: any,
+  description?: any
+): any {
   return {
     id,
     type,
-    inputs,
-    outputs,
+    [type === 'reduce' ? 'input' : 'inputs']: inputs,
+    [type === 'reduce' ? 'output' : 'outputs']: outputs,
     name,
     defaultConfig,
     fn,
