@@ -3,13 +3,13 @@ import { validate as isUUID } from 'uuid'
 
 export const typeRegistry = new Map<string, CellType<any>>()
 
-export interface CellType<Value = unknown> {
+export interface CellType<Value extends BaseValue, BaseValue = unknown> {
   readonly id: string
   readonly displayName: string
   readonly defaultValue: Value
   readonly validate: (value: unknown) => value is Value
 
-  is<ExpectedCellType extends CellType> (t: ExpectedCellType): this is ExpectedCellType
+  is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType
 }
 
 export abstract class AbstractCellType<Value = unknown> implements CellType<Value> {
@@ -19,7 +19,7 @@ export abstract class AbstractCellType<Value = unknown> implements CellType<Valu
 
   public abstract validate: (value: unknown) => value is Value
 
-  public is<ExpectedCellType extends CellType> (t: ExpectedCellType): this is ExpectedCellType {
+  public is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType {
     return this instanceof t.constructor
   }
 }
@@ -30,12 +30,12 @@ function isCellTypeConstructor (fn: Function): fn is CellTypeConstructor {
   return fn === AbstractCellType || fn.prototype instanceof AbstractCellType
 }
 
-export function defineCellType<Value> (
+export function defineCellType<Value extends BaseValue, BaseValue = unknown> (
   id: string,
   displayName: string,
   defaultValue: Value,
   validate: (value: unknown) => value is Value,
-  extended?: CellType<Value>
+  extended?: CellType<BaseValue>
 ): CellType<Value> {
   if (!isUUID(id)) {
     throw new TypeError('\'id\' is not a uuid')

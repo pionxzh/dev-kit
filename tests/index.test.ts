@@ -1,11 +1,12 @@
+import { expectTypeOf } from 'expect-type'
+import { v4 as uuid } from 'uuid'
+import { describe, expect, test } from 'vitest'
+
 import {
   baseCellTypes,
   createSheetFunction,
-  defineCellType,
+  defineCellType
 } from '../src/index.mjs'
-import { v4 as uuid } from 'uuid'
-import { expectTypeOf } from 'expect-type'
-import { describe, expect, test } from 'vitest'
 
 describe('sheet', () => {
   type MyCellType = `my-cell-type${string}`
@@ -15,7 +16,7 @@ describe('sheet', () => {
     'my-cell-type',
     (value):
     value is MyCellType => typeof value === 'string' &&
-      value.startsWith('my-cell-type'),
+      value.startsWith('my-cell-type')
   )
 
   test('define cell type', () => {
@@ -28,7 +29,7 @@ describe('sheet', () => {
       'my-another-cell-type',
       (value): value is MyAnotherCellType => typeof value === 'string' &&
         value.startsWith('my-another-cell-type'),
-      baseCellTypes.string,
+      baseCellTypes.string
     )
     expect(siblingType.is(baseCellTypes.string)).eq(true)
     expect(siblingType.is(myCellType)).eq(false)
@@ -41,7 +42,7 @@ describe('sheet', () => {
       (value):
       value is MyCellType => typeof value === 'string' &&
         value.startsWith('my-cell-type'),
-      myCellType,
+      myCellType
     )
     expect(sonType.is(myCellType)).eq(true)
     expect(myCellType.is(sonType)).eq(false)
@@ -53,7 +54,7 @@ describe('sheet', () => {
       (value):
       value is MyCellType => typeof value === 'string' &&
         value.startsWith('my-cell-type'),
-      sonType,
+      sonType
     )
     expect(grandsonType.is(myCellType)).eq(true)
     expect(grandsonType.is(sonType)).eq(true)
@@ -70,8 +71,8 @@ describe('sheet', () => {
           displayName: 'bar',
           defaultValue: '',
           validate: (value): value is string => false,
-          is: () => false,
-        },
+          is: () => false
+        }
       )
     }).toThrowErrorMatchingInlineSnapshot('"\'extended\' is not an instance of \'AbstractCellType\'"')
   })
@@ -87,18 +88,18 @@ describe('sheet', () => {
       {
         input: {
           type: baseCellTypes.string,
-          name: 'input column',
+          name: 'input column'
         },
         foo: {
           type: myCellType,
-          name: 'goo',
-        },
+          name: 'goo'
+        }
       },
       {
         output: {
           type: baseCellTypes.string,
-          name: 'output column',
-        },
+          name: 'output column'
+        }
       },
       { /* no config */ },
       async (columns) => {
@@ -106,11 +107,11 @@ describe('sheet', () => {
         expectTypeOf(columns.foo).toEqualTypeOf<MyCellType[]>()
         expectTypeOf(columns.input).toEqualTypeOf<string[]>()
         return {
-          output: columns.input.map(item => item.toUpperCase()),
+          output: columns.input.map(item => item.toUpperCase())
         }
       },
       undefined,
-      undefined,
+      undefined
     )
   })
 })
