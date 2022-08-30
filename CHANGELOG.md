@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.12](https://github.com/TexteaInc/dev-kit/compare/v0.11.11...v0.11.12) (2022-08-30)
+
+
+### Features
+
+* enhance subtype in column ([a745a49](https://github.com/TexteaInc/dev-kit/commit/a745a493f71f10cd04acb93b6a9d397e4ed7c8f2))
+
 ## [0.11.11](https://github.com/TexteaInc/dev-kit/compare/v0.11.10...v0.11.11) (2022-08-29)
 
 
