@@ -115,13 +115,6 @@ export type BaseCellTypes = typeof baseCellTypes
 export type BaseCellTypesKeys = keyof BaseCellTypes
 export type BaseCellType = BaseCellTypes[BaseCellTypesKeys]
 
-export type Cell =
-  (undefined | null | boolean | string | number | object)
-  | Cell[]
-
-export type Row = Record<string, Cell>
-export type Column = Cell[]
-
 export type ConfigPanelProps<Config extends Record<string, unknown>> = {
   config: Config
   onChangeConfig: (apply: (oldConfig: Config) => Config) => void
@@ -138,37 +131,12 @@ export type IO = {
 
 export type SheetFunctionType = 'map' | 'reduce' | 'transform'
 
-export type UnionToIntersection<U> =
-  (U extends any ? (k: U) => void : never) extends ((k: infer I) => void)
-    ? I
-    : never
-
-export type LastOf<T> =
-  UnionToIntersection<T extends any ? () => T : never> extends () => (infer R)
-    ? R
-    : never
-
-export type Push<T extends any[], V> = [...T, V];
-export type TupleUnion<T, L = LastOf<T>, N = [T] extends [never]
-  ? true
-  : false> =
-  true extends N ? [] : Push<TupleUnion<Exclude<T, L>>, L>
-export type ObjValueTuple<T, KS extends any[] = TupleUnion<keyof T>, R extends any[] = []> =
-  KS extends [infer K, ...infer KT]
-    ? ObjValueTuple<T, KT, [...R, T[K & keyof T]]>
-    : R
-
 export type InferIOItemToJSType<T extends IOItem> =
   T extends { type: infer U }
     ? U extends AbstractCellType<infer V>
       ? V
       : never
     : never
-
-export type Arg<T extends unknown[]> = T extends [infer U, ...infer V]
-  ? U extends IOItem
-    ? [InferIOItemToJSType<U>[], ...Arg<V>]
-    : [unknown, ...Arg<V>] : []
 
 export type Columns<T extends IO> = {
   [Key in keyof T]: InferIOItemToJSType<T[Key]>[]
