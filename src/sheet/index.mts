@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { validate as isUUID } from 'uuid'
 
-export const typeRegistry = new Map<string, CellType<any, any>>()
+export const typeRegistry = new Map<string, CellType>()
 
-export interface CellType<Value extends BaseValue, BaseValue= unknown> {
+export interface CellType<Value extends BaseValue = any, BaseValue = any> {
   readonly id: string
   readonly displayName: string
   readonly defaultValue: Value
@@ -12,12 +12,13 @@ export interface CellType<Value extends BaseValue, BaseValue= unknown> {
   is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType
 }
 
-export abstract class AbstractCellType<Value extends BaseValue, BaseValue= unknown> implements CellType<Value, BaseValue> {
+export abstract class AbstractCellType<Value extends BaseValue, BaseValue = unknown> implements CellType<Value, BaseValue> {
   public readonly abstract id: string
   public readonly abstract displayName: string
   public readonly abstract defaultValue: Value
 
   public abstract validate: (value: BaseValue) => value is Value
+
   public is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType {
     return this instanceof t.constructor
   }
@@ -49,13 +50,14 @@ export function defineCellType<Value extends BaseValue, BaseValue = unknown> (
     let SuperCellType: CellTypeConstructor
     if (extended) {
       if (!isCellTypeConstructor(extended.constructor)) {
-        throw new TypeError('\'extended\' is not an instance of \'AbstractCellType\'')
+        throw new TypeError(
+          '\'extended\' is not an instance of \'AbstractCellType\'')
       }
       SuperCellType = extended.constructor
     } else {
       SuperCellType = AbstractCellType
     }
-    const cellType = new (class extends SuperCellType<Value, BaseValue> {
+    const cellType: CellType<Value, BaseValue> = new (class extends SuperCellType<Value, BaseValue> {
       id = id
       displayName = displayName
       defaultValue = defaultValue
@@ -166,17 +168,17 @@ export const createSheetFunction = <Type extends SheetFunctionType,
   Inputs extends IO,
   Outputs extends IO,
   Config extends Record<string, unknown>>
-  (
-    id: string,
-    name: string,
-    type: Type,
-    inputs: Inputs,
-    outputs: Outputs,
-    defaultConfig: Config,
-    fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
-    configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel'],
-    description?: SheetFunction<Type, Inputs, Outputs, Config>['description']
-  ): SheetFunction<Type, Inputs, Outputs, Config> => {
+(
+  id: string,
+  name: string,
+  type: Type,
+  inputs: Inputs,
+  outputs: Outputs,
+  defaultConfig: Config,
+  fn: SheetFunction<Type, Inputs, Outputs, Config>['fn'],
+  configPanel?: SheetFunction<Type, Inputs, Outputs, Config>['configPanel'],
+  description?: SheetFunction<Type, Inputs, Outputs, Config>['description']
+): SheetFunction<Type, Inputs, Outputs, Config> => {
   return {
     id,
     type,
