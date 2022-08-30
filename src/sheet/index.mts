@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { validate as isUUID } from 'uuid'
 
-export const typeRegistry = new Map<string, CellType<any>>()
+export const typeRegistry = new Map<string, CellType<any, any>>()
 
-export interface CellType<Value extends BaseValue, BaseValue = unknown> {
+export interface CellType<Value extends BaseValue, BaseValue= unknown> {
   readonly id: string
   readonly displayName: string
   readonly defaultValue: Value
@@ -12,13 +12,12 @@ export interface CellType<Value extends BaseValue, BaseValue = unknown> {
   is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType
 }
 
-export abstract class AbstractCellType<Value = unknown> implements CellType<Value> {
+export abstract class AbstractCellType<Value extends BaseValue, BaseValue= unknown> implements CellType<Value, BaseValue> {
   public readonly abstract id: string
   public readonly abstract displayName: string
   public readonly abstract defaultValue: Value
 
-  public abstract validate: (value: unknown) => value is Value
-
+  public abstract validate: (value: BaseValue) => value is Value
   public is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType {
     return this instanceof t.constructor
   }
@@ -34,9 +33,9 @@ export function defineCellType<Value extends BaseValue, BaseValue = unknown> (
   id: string,
   displayName: string,
   defaultValue: Value,
-  validate: (value: unknown) => value is Value,
+  validate: (value: BaseValue) => value is Value,
   extended?: CellType<BaseValue>
-): CellType<Value> {
+): CellType<Value, BaseValue> {
   if (!isUUID(id)) {
     throw new TypeError('\'id\' is not a uuid')
   } else if (typeRegistry.has(id)) {
@@ -56,7 +55,7 @@ export function defineCellType<Value extends BaseValue, BaseValue = unknown> (
     } else {
       SuperCellType = AbstractCellType
     }
-    const cellType = new (class extends SuperCellType {
+    const cellType = new (class extends SuperCellType<Value, BaseValue> {
       id = id
       displayName = displayName
       defaultValue = defaultValue
