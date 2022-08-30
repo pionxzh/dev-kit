@@ -134,7 +134,7 @@ export type SheetFunctionType = 'map' | 'reduce'
 
 export type InferIOItemToJSType<T extends IOItem> =
   T extends { type: infer U }
-    ? U extends AbstractCellType<infer V>
+    ? U extends AbstractCellType<infer V, unknown>
       ? V
       : never
     : never
