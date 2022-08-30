@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.5](https://github.com/TexteaInc/dev-kit/compare/v0.12.4...v0.12.5) (2022-08-30)
+
+
+### Bug Fixes
+
+* ci release ([c5ddfd4](https://github.com/TexteaInc/dev-kit/commit/c5ddfd40a9ce61bf1d6b2e49617ef58eb0102fe1))
+
 ## [0.12.4](https://github.com/TexteaInc/dev-kit/compare/v0.12.3...v0.12.4) (2022-08-30)
 
 
