@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.1](https://github.com/TexteaInc/dev-kit/compare/v0.12.0...v0.12.1) (2022-08-30)
+
+
+### Bug Fixes
+
+* type infer error ([2023f72](https://github.com/TexteaInc/dev-kit/commit/2023f72560fb480dd178467cc87ce25d7e4f861e))
+
 ## [0.12.0](https://github.com/TexteaInc/dev-kit/compare/v0.11.16...v0.12.0) (2022-08-30)
 
 
