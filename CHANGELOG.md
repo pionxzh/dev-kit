@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.14](https://github.com/TexteaInc/dev-kit/compare/v0.11.13...v0.11.14) (2022-08-30)
+
+
+### Bug Fixes
+
+* improve `validate` function ([9c1cfbb](https://github.com/TexteaInc/dev-kit/commit/9c1cfbb0d4f1dc535e2a12d49031cb99443f2ec7))
+
 ## [0.11.13](https://github.com/TexteaInc/dev-kit/compare/v0.11.12...v0.11.13) (2022-08-30)
 
 
