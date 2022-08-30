@@ -74,14 +74,12 @@ describe('sheet', () => {
           is: () => false
         }
       )
-    }).toThrowErrorMatchingInlineSnapshot('"\'extended\' is not an instance of \'AbstractCellType\'"')
+    }).toThrowErrorMatchingInlineSnapshot(
+      '"\'extended\' is not an instance of \'AbstractCellType\'"')
   })
 
-  test('define function', () => {
-    /**
-     * This is an example
-     */
-    createSheetFunction(
+  test('define map function', () => {
+    const fn = createSheetFunction(
       'to-lowercase',
       'To LowerCase',
       'map',
@@ -113,5 +111,29 @@ describe('sheet', () => {
       undefined,
       undefined
     )
+    expect(fn.inputs.input.type).toBe(baseCellTypes.string)
+    expect(fn.outputs.output.type).toBe(baseCellTypes.string)
+  })
+
+  test('define reduce function', () => {
+    const fn = createSheetFunction(
+      'sum',
+      'Sum',
+      'reduce',
+      {
+        type: baseCellTypes.number,
+        name: 'input column'
+      },
+      {
+        type: baseCellTypes.number,
+        name: 'output'
+      },
+      {/* no config */ },
+      async (numbers) => {
+        return numbers.reduce((p, x) => p + x)
+      }
+    )
+    expect(fn.input.type).toBe(baseCellTypes.number)
+    expect(fn.output.type).toBe(baseCellTypes.number)
   })
 })
