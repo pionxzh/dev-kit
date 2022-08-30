@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.12.0](https://github.com/TexteaInc/dev-kit/compare/v0.11.16...v0.12.0) (2022-08-30)
+
+
+### Features
+
+* support reduce function ([2f058ec](https://github.com/TexteaInc/dev-kit/commit/2f058ecdf918d63e3441fc711d7f23d13afdb74b))
+
+
+### Bug Fixes
+
+* improve cell type ([e443513](https://github.com/TexteaInc/dev-kit/commit/e4435136fd7613385ee59dd67341c696ab613425))
+
+
+### Miscellaneous Chores
+
+* bump version ([24309c0](https://github.com/TexteaInc/dev-kit/commit/24309c0dac9184caaa0a72504332fff1098468b6))
+
 ## [0.11.16](https://github.com/TexteaInc/dev-kit/compare/v0.11.14...v0.11.16) (2022-08-30)
 
 
