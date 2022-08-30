@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.3](https://github.com/TexteaInc/dev-kit/compare/v0.12.2...v0.12.3) (2022-08-30)
+
+
+### Bug Fixes
+
+* matchType ([419b343](https://github.com/TexteaInc/dev-kit/commit/419b34388841c9dc7dc4782e056af8decd673a8a))
+
 ## [0.12.2](https://github.com/TexteaInc/dev-kit/compare/v0.12.1...v0.12.2) (2022-08-30)
 
 
