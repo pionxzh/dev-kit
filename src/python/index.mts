@@ -6,7 +6,7 @@ const f = (...args: Parameters<typeof fetch>) => fetch(...args)
 export type BaseType = 'int' | 'str' | 'list' | 'dict'
 export type PyType = BaseType | `typing.List[${BaseType}]`
 
-export function matchType (type: PyType): CellType<unknown> {
+export function matchType (type: PyType): CellType {
   switch (type) {
     case 'str': {
       return baseCellTypes.string
@@ -14,10 +14,17 @@ export function matchType (type: PyType): CellType<unknown> {
     case 'int': {
       return baseCellTypes.number
     }
+    case 'dict': {
+      return baseCellTypes.object
+    }
     case 'list': {
       return baseCellTypes.array
     }
     default: {
+      if (type.startsWith('typing.List')) {
+        const size = 'typing.List'.length
+        return matchType(type.substr(size + 1, type.length - size - 2) as PyType)
+      }
       return baseCellTypes.string
     }
   }
