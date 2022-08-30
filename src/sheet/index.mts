@@ -7,7 +7,7 @@ export interface CellType<Value extends BaseValue, BaseValue = unknown> {
   readonly id: string
   readonly displayName: string
   readonly defaultValue: Value
-  readonly validate: (value: unknown) => value is Value
+  readonly validate: (value: BaseValue) => value is Value
 
   is<ExpectedCellType extends CellType<unknown>> (t: ExpectedCellType): this is ExpectedCellType
 }
