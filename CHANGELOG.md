@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.16](https://github.com/TexteaInc/dev-kit/compare/v0.11.14...v0.11.16) (2022-08-30)
+
+
+### Bug Fixes
+
+* cell type ([6546be1](https://github.com/TexteaInc/dev-kit/commit/6546be15d53d778aa0b6b567c3a6ecb54ff52b89))
+
 ## [0.11.14](https://github.com/TexteaInc/dev-kit/compare/v0.11.13...v0.11.14) (2022-08-30)
 
 
