@@ -150,7 +150,7 @@ export interface SheetMapFunction<Inputs extends IO = IO,
    * UUID4
    */
   id: string
-  type: 'map'
+  type: 'map' | 'transform'
   name: string
   inputs: Inputs
   outputs: Outputs
