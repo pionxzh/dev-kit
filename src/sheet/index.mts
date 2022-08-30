@@ -130,7 +130,7 @@ export type IO = {
   [key: string]: IOItem
 }
 
-export type SheetFunctionType = 'map' | 'reduce'
+export type SheetFunctionType = 'map' | 'reduce' | 'transform'
 
 export type InferIOItemToJSType<T extends IOItem> =
   T extends { type: infer U }
@@ -150,7 +150,7 @@ export interface SheetMapFunction<Inputs extends IO = IO,
    * UUID4
    */
   id: string
-  type: 'map' | 'transform'
+  type: Extract<SheetFunctionType, 'map' | 'reduce'>
   name: string
   inputs: Inputs
   outputs: Outputs
@@ -169,7 +169,7 @@ export interface SheetReduceFunction<Inputs extends IOItem = IOItem,
    * UUID4
    */
   id: string
-  type: 'reduce'
+  type: Extract<SheetFunctionType, 'reduce'>
   name: string
   input: Inputs
   output: Outputs
