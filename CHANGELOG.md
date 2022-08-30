@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.13](https://github.com/TexteaInc/dev-kit/compare/v0.11.12...v0.11.13) (2022-08-30)
+
+
+### Bug Fixes
+
+* cellType in python ([3eb8d0f](https://github.com/TexteaInc/dev-kit/commit/3eb8d0f59d3e459fac96e84c6bc8c7a5cad6b605))
+
 ## [0.11.12](https://github.com/TexteaInc/dev-kit/compare/v0.11.11...v0.11.12) (2022-08-30)
 
 
