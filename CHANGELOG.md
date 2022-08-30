@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.2](https://github.com/TexteaInc/dev-kit/compare/v0.12.1...v0.12.2) (2022-08-30)
+
+
+### Bug Fixes
+
+* revert sheet function type 'transform' ([1105605](https://github.com/TexteaInc/dev-kit/commit/1105605a4e59b49cdd631ce307b33f59091b3228))
+
 ## [0.12.1](https://github.com/TexteaInc/dev-kit/compare/v0.12.0...v0.12.1) (2022-08-30)
 
 
