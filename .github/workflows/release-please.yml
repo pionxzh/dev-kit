@@ -6,7 +6,6 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    environment: Publish
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -32,6 +31,7 @@ jobs:
         run: yarn install
       - uses: JS-DevTools/npm-publish@v1
         name: Publish to npm
+        if: ${{ steps.release.outputs.release_created }}
         with:
           access: 'public'
           token: ${{ secrets.NPM_TOKEN }}
