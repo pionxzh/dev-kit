@@ -30,8 +30,8 @@ jobs:
       - name: Install dependencies
         if: ${{ steps.release.outputs.release_created }}
         run: yarn install
-      - name: Publish to npm
-        if: ${{ steps.release.outputs.release_created }}
-        run: npm publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: JS-DevTools/npm-publish@v1
+        name: Publish to npm
+        with:
+          access: 'public'
+          token: ${{ secrets.NPM_TOKEN }}
