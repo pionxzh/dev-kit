@@ -12,18 +12,15 @@ jobs:
         with:
           release-type: node
           package-name: '@textea/dev-kit'
-          token: ${{secrets.GITHUB_TOKEN}}
-          bump-minor-pre-major: true
-          bump-patch-for-minor-pre-major: true
-          draft: false
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         if: ${{ steps.release.outputs.release_created }}
-      - name: Use Node.js 18.x
+      - name: Use Node.js LTS
         uses: actions/setup-node@v3
         if: ${{ steps.release.outputs.release_created }}
         with:
-          node-version: '18.x'
+          node-version-file: '.nvmrc'
           cache: 'yarn'
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
