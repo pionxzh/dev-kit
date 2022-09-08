@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.11](https://github.com/TexteaInc/dev-kit/compare/v0.12.10...v0.12.11) (2022-09-08)
+
+
+### Bug Fixes
+
+* scripts in package.json ([70447a1](https://github.com/TexteaInc/dev-kit/commit/70447a196015eb841517b6e0367a5e112aa80992))
+
 ## [0.12.10](https://github.com/TexteaInc/dev-kit/compare/v0.12.9...v0.12.10) (2022-09-08)
 
 
