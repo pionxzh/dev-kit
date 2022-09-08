@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.12](https://github.com/TexteaInc/dev-kit/compare/v0.12.11...v0.12.12) (2022-09-08)
+
+
+### Bug Fixes
+
+* import `.js` ([6e4daca](https://github.com/TexteaInc/dev-kit/commit/6e4daca13cfaa7e5478bf3b635ad54bb587afaae))
+
 ## [0.12.11](https://github.com/TexteaInc/dev-kit/compare/v0.12.10...v0.12.11) (2022-09-08)
 
 
