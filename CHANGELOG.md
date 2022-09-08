@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.8](https://github.com/TexteaInc/dev-kit/compare/v0.12.7...v0.12.8) (2022-09-08)
+
+
+### Bug Fixes
+
+* rollup generate dts ([2b0408e](https://github.com/TexteaInc/dev-kit/commit/2b0408ebd98c862be12966560309f692820c6228))
+
 ## [0.12.7](https://github.com/TexteaInc/dev-kit/compare/v0.12.6...v0.12.7) (2022-09-08)
 
 
