@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.13](https://github.com/TexteaInc/dev-kit/compare/v0.12.12...v0.12.13) (2022-09-08)
+
+
+### Bug Fixes
+
+* remove bin ([2609f2b](https://github.com/TexteaInc/dev-kit/commit/2609f2b050337f885c2f62af16ce633d33d4121b))
+* remove unused index.js ([aa8071a](https://github.com/TexteaInc/dev-kit/commit/aa8071a00eaf2f61b5e8bf735bab6cf9eb8ed8d0))
+
 ## [0.12.12](https://github.com/TexteaInc/dev-kit/compare/v0.12.11...v0.12.12) (2022-09-08)
 
 
