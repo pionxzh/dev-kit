@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.6](https://github.com/TexteaInc/dev-kit/compare/v0.12.5...v0.12.6) (2022-09-08)
+
+
+### Features
+
+* add google-cloud apis ([19ddfa5](https://github.com/TexteaInc/dev-kit/commit/19ddfa59323ae93d1a5536d8da08d85f2b96d87c))
+
 ## [0.12.5](https://github.com/TexteaInc/dev-kit/compare/v0.12.4...v0.12.5) (2022-08-30)
 
 
