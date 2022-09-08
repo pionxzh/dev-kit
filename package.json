@@ -53,6 +53,10 @@
     "format:check": "prettier --check .",
     "format:fix": "prettier --write ."
   },
+  "lint-staged": {
+    "!*.{ts,tsx,js,jsx}": "prettier --write --ignore-unknown",
+    "*.{ts,tsx,js,jsx}": "npx eslint --cache --fix"
+  },
   "dependencies": {
     "@google-cloud/cloudbuild": "^3.1.0",
     "@google-cloud/run": "^0.2.2",
