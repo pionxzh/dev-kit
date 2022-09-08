@@ -75,11 +75,11 @@ const dtsMatrix = (): RollupOptions[] => {
 }
 
 const build: RollupOptions[] = [
-  buildMatrix('./dist/es/google-cloud/index.js', 'google-cloud'),
-  buildMatrix('./dist/es/python/index.js', 'python'),
-  buildMatrix('./dist/es/sheet/index.js', 'sheet'),
-  buildMatrix('./dist/es/theme/index.js', 'theme'),
-  buildMatrix('./dist/es/utils/index.js', 'utils'),
+  buildMatrix('./dist/out/google-cloud/index.js', 'google-cloud'),
+  buildMatrix('./dist/out/python/index.js', 'python'),
+  buildMatrix('./dist/out/sheet/index.js', 'sheet'),
+  buildMatrix('./dist/out/theme/index.js', 'theme'),
+  buildMatrix('./dist/out/utils/index.js', 'utils'),
   ...dtsMatrix()
 ]
 
