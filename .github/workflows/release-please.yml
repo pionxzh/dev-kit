@@ -11,7 +11,7 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: '@textea/dev-kit'
+          package-name: "@textea/dev-kit"
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -20,12 +20,15 @@ jobs:
         uses: actions/setup-node@v3
         if: ${{ steps.release.outputs.release_created }}
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-          registry-url: 'https://registry.npmjs.org'
+          node-version-file: ".nvmrc"
+          cache: "yarn"
+          registry-url: "https://registry.npmjs.org"
       - name: Install dependencies
         if: ${{ steps.release.outputs.release_created }}
         run: yarn install
+      - name: Prepack
+        if: ${{ steps.release.outputs.release_created }}
+        run: yarn prepack
       - name: Build Output
         if: ${{ steps.release.outputs.release_created }}
         run: yarn build
@@ -34,5 +37,5 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         with:
           package: dist/package.json
-          access: 'public'
+          access: "public"
           token: ${{ secrets.NPM_TOKEN }}
