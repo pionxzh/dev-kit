@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.9](https://github.com/TexteaInc/dev-kit/compare/v0.12.8...v0.12.9) (2022-09-08)
+
+
+### Bug Fixes
+
+* module exports ([e8550fa](https://github.com/TexteaInc/dev-kit/commit/e8550facdece6774f2488e5b00a400c518d8f58c))
+
 ## [0.12.8](https://github.com/TexteaInc/dev-kit/compare/v0.12.7...v0.12.8) (2022-09-08)
 
 
