@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.10](https://github.com/TexteaInc/dev-kit/compare/v0.12.9...v0.12.10) (2022-09-08)
+
+
+### Bug Fixes
+
+* module paths ([f5572b1](https://github.com/TexteaInc/dev-kit/commit/f5572b196462cbcc85ab2c3e15a1941b3ab3ee6f))
+
 ## [0.12.9](https://github.com/TexteaInc/dev-kit/compare/v0.12.8...v0.12.9) (2022-09-08)
 
 
