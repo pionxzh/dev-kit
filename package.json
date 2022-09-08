@@ -3,9 +3,6 @@
   "version": "0.12.8",
   "description": "Toolkit for developing Augmented Textea Products.",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/es/index.d.mts",
   "author": "himself65 <himself65@textea.co>",
   "exports": {
     "./package.json": "./package.json",

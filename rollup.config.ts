@@ -34,7 +34,7 @@ const outputMatrix = (
     sourcemap: true,
     name: 'DevKit',
     format,
-    banner: `/// <reference types="./es/${baseName}.d.mts" />`,
+    banner: `/// <reference types="./${baseName}.d.ts" />`,
     globals: external.reduce((object, module) => {
       object[module] = module
       return object
