@@ -1,9 +1,18 @@
 import { basename, resolve } from 'node:path'
 
-import ts from '@rollup/plugin-sucrase'
 import type { ModuleFormat, OutputOptions, RollupOptions } from 'rollup'
 
 const outputDir = resolve(__dirname, 'dist')
+const external = [
+  'react',
+  'react-dom',
+  '@google-cloud/cloudbuild',
+  '@google-cloud/run',
+  'uuid',
+  '@mui/material/styles',
+  'google-auth-library',
+  'node:util'
+]
 
 const outputMatrix = (
   name: string, format: ModuleFormat[] = ['es', 'umd']): OutputOptions[] => {
@@ -14,18 +23,22 @@ const outputMatrix = (
     sourcemap: true,
     name: 'DevKit',
     format,
-    banner: `/// <reference types="./${baseName}.d.ts" />`
+    banner: `/// <reference types="./es/${baseName}.d.mts" />`,
+    globals: external.reduce((object, module) => {
+      object[module] = module
+      return object
+    }, {})
   }))
 }
 
-const base = {
+const entry: RollupOptions = {
   input: './dist/es/index.mjs',
   output: outputMatrix('index'),
-  plugins: [ts({ transforms: ['typescript'] })]
+  external
 }
 
 const build: RollupOptions[] = [
-  base
+  entry
 ]
 
 export default build
