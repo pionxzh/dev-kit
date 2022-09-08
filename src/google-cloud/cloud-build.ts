@@ -2,13 +2,13 @@ import { debuglog } from 'node:util'
 
 import { CloudBuildClient } from '@google-cloud/cloudbuild'
 
-import { createFunixBuildSteps } from './funix-build-steps.mjs'
+import { createFunixBuildSteps } from './funix-build-steps.js'
 import {
   createAuth,
   getCloudBuildTriggerName,
   getCloudRunServiceName,
   GoogleClientConfig
-} from './util.mjs'
+} from './util.js'
 
 const logger = debuglog('textea-dev-kit')
 

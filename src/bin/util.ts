@@ -1,7 +1,8 @@
-import { Status } from '@grpc/grpc-js/src/constants'
 import { parseArgs } from 'node:util'
 
-import { createCloudBuild, createCloudRun } from '../google-cloud/index.mjs'
+import { Status } from '@grpc/grpc-js/src/constants'
+
+import { createCloudBuild, createCloudRun } from '../google-cloud'
 
 interface GoogleClientError extends Error {
   code: Status

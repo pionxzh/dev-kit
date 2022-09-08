@@ -2,8 +2,8 @@ import { debuglog } from 'node:util'
 
 import { v2 } from '@google-cloud/run'
 
-import type { CloudBuildConfig } from './cloud-build.mjs'
-import { createAuth, getCloudRunServiceName } from './util.mjs'
+import type { CloudBuildConfig } from './cloud-build.js'
+import { createAuth, getCloudRunServiceName } from './util.js'
 
 const logger = debuglog('textea-dev-kit')
 

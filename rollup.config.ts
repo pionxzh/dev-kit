@@ -1,6 +1,18 @@
 import { basename, resolve } from 'node:path'
 
-import type { ModuleFormat, OutputOptions, RollupOptions } from 'rollup'
+import commonjs from '@rollup/plugin-commonjs'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import type {
+  ModuleFormat,
+  OutputOptions,
+  RollupCache,
+  RollupOptions
+} from 'rollup'
+import dts from 'rollup-plugin-dts'
+
+let cache: RollupCache
+
+const dtsOutput = new Set<[string, string]>()
 
 const outputDir = resolve(__dirname, 'dist')
 const external = [
@@ -18,8 +30,7 @@ const outputMatrix = (
   name: string, format: ModuleFormat[] = ['es', 'umd']): OutputOptions[] => {
   const baseName = basename(name)
   return format.flatMap(format => ({
-    file: resolve(outputDir,
-      `${baseName}.${format === 'es' ? 'm' : ''}js`),
+    file: resolve(outputDir, `${baseName}.${format === 'es' ? 'm' : ''}js`),
     sourcemap: true,
     name: 'DevKit',
     format,
@@ -31,14 +42,45 @@ const outputMatrix = (
   }))
 }
 
-const entry: RollupOptions = {
-  input: './dist/es/index.mjs',
-  output: outputMatrix('index'),
-  external
+const buildMatrix = (input: string, output: string): RollupOptions => {
+  dtsOutput.add([input.replaceAll('.js', '.d.ts'), output])
+  return {
+    input,
+    output: outputMatrix(output),
+    cache,
+    external,
+    plugins: [
+      commonjs({
+        esmExternals: true
+      }),
+      nodeResolve({
+        exportConditions: ['import', 'require', 'default']
+      })
+    ]
+  }
+}
+
+const dtsMatrix = (): RollupOptions[] => {
+  return [...dtsOutput.values()].flatMap(([input, output]) => ({
+    input,
+    cache,
+    output: {
+      file: resolve(outputDir, `${output}.d.ts`),
+      format: 'es'
+    },
+    plugins: [
+      dts()
+    ]
+  }))
 }
 
 const build: RollupOptions[] = [
-  entry
+  buildMatrix('./dist/es/google-cloud/index.js', 'google-cloud'),
+  buildMatrix('./dist/es/python/index.js', 'python'),
+  buildMatrix('./dist/es/sheet/index.js', 'sheet'),
+  buildMatrix('./dist/es/theme/index.js', 'theme'),
+  buildMatrix('./dist/es/utils/index.js', 'utils'),
+  ...dtsMatrix()
 ]
 
 export default build

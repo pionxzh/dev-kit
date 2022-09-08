@@ -1,4 +1,4 @@
-import { baseCellTypes, CellType } from '../sheet/index.mjs'
+import { baseCellTypes, CellType } from '../sheet'
 
 const f = (...args: Parameters<typeof fetch>) => fetch(...args)
   .then(response => response.json())
