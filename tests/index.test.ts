@@ -2,13 +2,13 @@ import { expectTypeOf } from 'expect-type'
 import { v4 as uuid } from 'uuid'
 import { describe, expect, test } from 'vitest'
 
-describe('sheet', async () => {
-  const {
-    baseCellTypes,
-    createSheetFunction,
-    defineCellType
-  } = await import('../src/index.mjs')
+import {
+  baseCellTypes,
+  createSheetFunction,
+  defineCellType
+} from '../src/sheet'
 
+describe('sheet', async () => {
   type MyCellType = `my-cell-type${string}`
   const myCellType = defineCellType<MyCellType>(
     uuid(),
