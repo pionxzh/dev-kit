@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.7](https://github.com/TexteaInc/dev-kit/compare/v0.12.6...v0.12.7) (2022-09-08)
+
+
+### Bug Fixes
+
+* build target ([19de517](https://github.com/TexteaInc/dev-kit/commit/19de517392e6cf884bb20cf199a00b0ff2979a23))
+
 ## [0.12.6](https://github.com/TexteaInc/dev-kit/compare/v0.12.5...v0.12.6) (2022-09-08)
 
 
