@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { validate as isUUID } from 'uuid'
+import { validate as isUUID } from 'uuid/index.js'
 
 export const typeRegistry = new Map<string, CellType>()
 
