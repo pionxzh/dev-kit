@@ -150,7 +150,7 @@ export interface SheetMapFunction<Inputs extends IO = IO,
    * UUID4
    */
   id: string
-  type: Extract<SheetFunctionType, 'map' | 'reduce'>
+  type: Extract<SheetFunctionType, 'map' | 'transform'>
   name: string
   inputs: Inputs
   outputs: Outputs
@@ -188,7 +188,7 @@ export function createSheetFunction<Inputs extends IOItem = IOItem,
   Config extends Record<string, unknown> = Record<string, any>> (
   id: string,
   name: string,
-  type: 'reduce',
+  type: Extract<SheetFunctionType, 'reduce'>,
   input: Inputs,
   output: Outputs,
   defaultConfig: Config,
