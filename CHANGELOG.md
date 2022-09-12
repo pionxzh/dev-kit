@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.16](https://github.com/TexteaInc/dev-kit/compare/v0.12.15...v0.12.16) (2022-09-12)
+
+
+### Bug Fixes
+
+* create sheet function type ([ba66508](https://github.com/TexteaInc/dev-kit/commit/ba66508b3f8c306e19e671bdc4c11a60e137c11d))
+
 ## [0.12.15](https://github.com/TexteaInc/dev-kit/compare/v0.12.14...v0.12.15) (2022-09-12)
 
 
