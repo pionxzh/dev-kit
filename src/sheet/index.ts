@@ -201,7 +201,7 @@ export function createSheetFunction<Inputs extends IO,
   Config extends Record<string, unknown>> (
   id: string,
   name: string,
-  type: Omit<SheetFunctionType, 'reduce'>,
+  type: Extract<SheetFunctionType, 'map' | 'transform'>,
   inputs: Inputs,
   outputs: Outputs,
   defaultConfig: Config,
