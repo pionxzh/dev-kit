@@ -14,6 +14,7 @@ export function createCloudRun (config: CloudBuildConfig) {
   })
   logger('create cloud run client success')
   const apis = {
+    _client: cloudRunClient,
     getCloudRunService: async (owner: string, repoName: string) => {
       const serviceName = getCloudRunServiceName(owner, repoName)
       const name = `projects/${config.projectId}/locations/us-central1/services/${serviceName}`

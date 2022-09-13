@@ -23,6 +23,7 @@ export function createCloudBuild (config: CloudBuildConfig) {
   logger('project id: %s', config.projectId)
 
   const apis = {
+    _client: cloudBuildClient,
     createBuildTrigger: async (owner: string, repoName: string) => {
       const triggerName = getCloudBuildTriggerName(owner, repoName)
       const serviceName = getCloudRunServiceName(owner, repoName)
@@ -43,6 +44,16 @@ export function createCloudBuild (config: CloudBuildConfig) {
         }
       })
       return trigger
+    },
+    createBuild: async (owner: string, repoName: string) => {
+      const triggerName = getCloudBuildTriggerName(owner, repoName)
+      const [operation] = await cloudBuildClient.createBuild({
+        projectId: config.projectId,
+        build: {
+          name: triggerName
+        }
+      })
+      return operation
     }
   } as const
   Object.freeze(apis)
