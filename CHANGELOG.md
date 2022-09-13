@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/TexteaInc/dev-kit/compare/v0.12.16...v0.13.0) (2022-09-13)
+
+
+### Features
+
+* expose google cloud client ([#49](https://github.com/TexteaInc/dev-kit/issues/49)) ([f3da62c](https://github.com/TexteaInc/dev-kit/commit/f3da62cb01ece543ffe641c6dc067696c7c782b1))
+
 ## [0.12.16](https://github.com/TexteaInc/dev-kit/compare/v0.12.15...v0.12.16) (2022-09-12)
 
 
