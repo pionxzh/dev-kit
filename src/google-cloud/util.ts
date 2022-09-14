@@ -22,11 +22,11 @@ export const createAuth = (info: AuthInfo) => {
 }
 
 export const getCloudBuildTriggerName = (
-  owner: string, repoName: string) => `redstone-api-${owner}-${repoName}`.toLowerCase()
+  owner: string, repoName: string) => `${owner}-${repoName}`.toLowerCase()
 
 // google cloud run only accept a lowercase name
 export const getCloudRunServiceName = (owner: string, repoName: string) =>
-  `redstone-api-${owner}-${repoName}`.toLowerCase()
+  `${owner}-${repoName}`.toLowerCase()
 // endregion
 
 export type GoogleClientConfig = Pick<ClientOptions, 'projectId'> & {
