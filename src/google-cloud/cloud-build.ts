@@ -38,7 +38,7 @@ export function createCloudBuild (config: CloudBuildConfig) {
             owner,
             name: repoName,
             push: {
-              branch: 'main'
+              branch: '^main'
             }
           },
           build: createFunixBuildSteps(getProjectId(owner, repoName), serviceName)
