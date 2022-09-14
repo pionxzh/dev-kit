@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.1](https://github.com/TexteaInc/dev-kit/compare/v0.13.0...v0.13.1) (2022-09-14)
+
+
+### Bug Fixes
+
+* shorter service name ([ff441f2](https://github.com/TexteaInc/dev-kit/commit/ff441f2be8d47fd37fd80f29d1d5583db9dbf442))
+
 ## [0.13.0](https://github.com/TexteaInc/dev-kit/compare/v0.12.16...v0.13.0) (2022-09-13)
 
 
