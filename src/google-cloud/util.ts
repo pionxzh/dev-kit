@@ -21,6 +21,11 @@ export const createAuth = (info: AuthInfo) => {
   })
 }
 
+// google cloud build images only accept a lowercase name
+export const getProjectId = (
+  owner: string, repoName: string
+) => `${owner}-${repoName}`.toLowerCase()
+
 export const getCloudBuildTriggerName = (
   owner: string, repoName: string) => `${owner}-${repoName}`.toLowerCase()
 

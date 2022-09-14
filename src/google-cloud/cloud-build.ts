@@ -7,6 +7,7 @@ import {
   createAuth,
   getCloudBuildTriggerName,
   getCloudRunServiceName,
+  getProjectId,
   GoogleClientConfig
 } from './util.js'
 
@@ -40,7 +41,7 @@ export function createCloudBuild (config: CloudBuildConfig) {
               branch: 'main'
             }
           },
-          build: createFunixBuildSteps(serviceName)
+          build: createFunixBuildSteps(getProjectId(owner, repoName), serviceName)
         }
       })
       return trigger

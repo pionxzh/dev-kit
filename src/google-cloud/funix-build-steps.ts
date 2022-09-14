@@ -9,10 +9,11 @@ import type { google } from '@google-cloud/cloudbuild/build/protos/protos'
 // Refs: https://github.com/TexteaInc/PyDataFront
 const funixEntryPoint = 'python3 -m pydatafront main'
 const deployRegion = 'us-central1' // iowa
-const gcrHostname = 'us.gcr.io'
+const gcrHostname = 'gcr.io'
 const platform = 'managed'
 
 export const createFunixBuildSteps = (
+  repoId: string,
   cloudRunServiceName: string,
   _config?: {/* todo: support multi regions */ }): google.devtools.cloudbuild.v1.IBuild => {
   const labels = [
@@ -20,7 +21,7 @@ export const createFunixBuildSteps = (
     'commit-sha=$COMMIT_SHA',
     'gcb-build-id=$BUILD_ID'
   ].join(',')
-  const dockerImageUrl = `${gcrHostname}/$PROJECT_ID/github.com/$REPO_NAME/${cloudRunServiceName}:$COMMIT_SHA`
+  const dockerImageUrl = `${gcrHostname}/$PROJECT_ID/${repoId}/${cloudRunServiceName}:$COMMIT_SHA`
   return {
     tags: [
       'redstone-auto-deploy',
