@@ -20,7 +20,7 @@ export const createFunixBuildSteps = (
     'commit-sha=$COMMIT_SHA',
     'gcb-build-id=$BUILD_ID'
   ].join(',')
-  const dockerImageUrl = `${gcrHostname}/$PROJECT_ID/$REPO_NAME/${cloudRunServiceName}:$COMMIT_SHA`
+  const dockerImageUrl = `${gcrHostname}/github.com/$PROJECT_ID/$REPO_NAME/${cloudRunServiceName}:$COMMIT_SHA`
   return {
     tags: [
       'redstone-auto-deploy',
