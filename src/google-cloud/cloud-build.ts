@@ -50,7 +50,10 @@ export function createCloudBuild (config: CloudBuildConfig) {
       const triggerName = getCloudBuildTriggerName(owner, repoName)
       const [operation] = await cloudBuildClient.runBuildTrigger({
         projectId: config.projectId,
-        triggerId: triggerName
+        triggerId: triggerName,
+        source: {
+          branchName: 'main'
+        }
       })
       return operation
     }
