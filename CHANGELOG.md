@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.2](https://github.com/TexteaInc/dev-kit/compare/v0.13.1...v0.13.2) (2022-09-14)
+
+
+### Bug Fixes
+
+* docker image url ([2dd0f23](https://github.com/TexteaInc/dev-kit/commit/2dd0f23acee2ad15a192a0eab6438e167c65f12e))
+
 ## [0.13.1](https://github.com/TexteaInc/dev-kit/compare/v0.13.0...v0.13.1) (2022-09-14)
 
 
