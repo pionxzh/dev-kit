@@ -16,11 +16,6 @@ export const createFunixBuildSteps = (
   repoId: string,
   cloudRunServiceName: string,
   _config?: {/* todo: support multi regions */ }): google.devtools.cloudbuild.v1.IBuild => {
-  const labels = [
-    'managed-by-redstone-deploy',
-    'commit-sha=$COMMIT_SHA',
-    'gcb-build-id=$BUILD_ID'
-  ].join(',')
   const dockerImageUrl = `${gcrHostname}/$PROJECT_ID/${repoId}/${cloudRunServiceName}:$COMMIT_SHA`
   return {
     tags: [
@@ -71,7 +66,6 @@ export const createFunixBuildSteps = (
           cloudRunServiceName,
           `--platform=${platform}`,
           `--image=${dockerImageUrl}`,
-          `--labels=${labels}`,
           `--region=${deployRegion}`
         ]
       }
