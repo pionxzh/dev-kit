@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.13.4](https://github.com/TexteaInc/dev-kit/compare/v0.13.3...v0.13.4) (2022-09-14)
+
+
+### Bug Fixes
+
+* branch name ([62995aa](https://github.com/TexteaInc/dev-kit/commit/62995aa831ecfc047d21c948e7a088ae613ec64e))
+* branch name ([cc82b32](https://github.com/TexteaInc/dev-kit/commit/cc82b32338627e35a9cd49b927527920f3955c73))
+* build path issue ([a4d3284](https://github.com/TexteaInc/dev-kit/commit/a4d3284003a8d1a44148ca80bbc4ac8b802dcbac))
+* remove labels ([861eacd](https://github.com/TexteaInc/dev-kit/commit/861eacd7e159e4c0b4fd512f17a8d97a71a7c53d))
+
 ## [0.13.3](https://github.com/TexteaInc/dev-kit/compare/v0.13.2...v0.13.3) (2022-09-14)
 
 
