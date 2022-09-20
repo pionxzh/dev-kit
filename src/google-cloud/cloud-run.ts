@@ -34,8 +34,10 @@ export function createCloudRun (config: CloudBuildConfig) {
     createCloudRun: async (owner: string, repoName: string) => {
       const serviceName = getCloudRunServiceName(owner, repoName)
       // tip: let it crash if build trigger already exist
+      const parent = `projects/${config.projectId}/locations/us-central1`
+      const resource = `${parent}/${serviceName}`
       await cloudRunClient.createService({
-        parent: `projects/${config.projectId}/locations/us-central1`,
+        parent,
         serviceId: serviceName,
         service: {
           ingress: 1,
@@ -56,6 +58,20 @@ export function createCloudRun (config: CloudBuildConfig) {
               maxInstanceCount: 1
             }
           }
+        }
+      })
+      await cloudRunClient.setIamPolicy({
+        resource,
+        policy: {
+          bindings: [
+            {
+              role: 'roles/run.invoker',
+              members: [
+                'allUsers'
+              ],
+              condition: null
+            }
+          ]
         }
       })
     }
