@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.7](https://github.com/TexteaInc/dev-kit/compare/v0.13.6...v0.13.7) (2022-09-20)
+
+
+### Bug Fixes
+
+* resource name ([1f8e3f0](https://github.com/TexteaInc/dev-kit/commit/1f8e3f09b8368cec9ac46106cead7bf6161e0cd6))
+
 ## [0.13.6](https://github.com/TexteaInc/dev-kit/compare/v0.13.5...v0.13.6) (2022-09-20)
 
 
