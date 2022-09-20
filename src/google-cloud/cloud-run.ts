@@ -38,6 +38,7 @@ export function createCloudRun (config: CloudBuildConfig) {
         parent: `projects/${config.projectId}/locations/us-central1`,
         serviceId: serviceName,
         service: {
+          ingress: 1,
           description: 'Created by redstone',
           template: {
             containers: [
@@ -51,8 +52,8 @@ export function createCloudRun (config: CloudBuildConfig) {
               seconds: 10
             },
             scaling: {
-              minInstanceCount: 1,
-              maxInstanceCount: 5
+              minInstanceCount: 0,
+              maxInstanceCount: 1
             }
           }
         }
