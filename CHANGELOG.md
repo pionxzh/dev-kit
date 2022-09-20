@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.5](https://github.com/TexteaInc/dev-kit/compare/v0.13.4...v0.13.5) (2022-09-20)
+
+
+### Bug Fixes
+
+* cloud run config ([c250398](https://github.com/TexteaInc/dev-kit/commit/c250398bee03b95c3d0ab7e6b1bfce8ec503e0f1))
+
 ## [0.13.4](https://github.com/TexteaInc/dev-kit/compare/v0.13.3...v0.13.4) (2022-09-14)
 
 
