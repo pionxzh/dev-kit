@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.6](https://github.com/TexteaInc/dev-kit/compare/v0.13.5...v0.13.6) (2022-09-20)
+
+
+### Bug Fixes
+
+* allow all user invoke ([2037509](https://github.com/TexteaInc/dev-kit/commit/203750936ee83c4e489ac76643f4ccd1f175e63a))
+
 ## [0.13.5](https://github.com/TexteaInc/dev-kit/compare/v0.13.4...v0.13.5) (2022-09-20)
 
 
