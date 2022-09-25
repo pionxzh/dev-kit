@@ -16,12 +16,19 @@ const dtsOutput = new Set<[string, string]>()
 
 const outputDir = resolve(__dirname, 'dist')
 const external = [
+  '@emotion/react',
+  '@emotion/styled',
+  '@emotion/react/jsx-runtime',
+  '@emotion/react/jsx-dev-runtime',
+  '@mui/icons-material',
+  '@mui/material',
+  '@mui/material/styles',
+  '@mui/material/styles/index.js',
   'react',
   'react-dom',
   '@google-cloud/cloudbuild',
   '@google-cloud/run',
   'uuid',
-  '@mui/material/styles',
   'google-auth-library',
   'node:util'
 ]
