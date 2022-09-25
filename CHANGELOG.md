@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.8](https://github.com/TexteaInc/dev-kit/compare/v0.13.7...v0.13.8) (2022-09-25)
+
+
+### Bug Fixes
+
+* theme externals ([04e2bdb](https://github.com/TexteaInc/dev-kit/commit/04e2bdb4a5779c380baf6e9385bb9bc98153395c))
+
 ## [0.13.7](https://github.com/TexteaInc/dev-kit/compare/v0.13.6...v0.13.7) (2022-09-20)
 
 
