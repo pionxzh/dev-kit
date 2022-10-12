@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/TexteaInc/dev-kit/compare/v0.13.8...v0.14.0) (2022-10-12)
+
+
+### Features
+
+* support GitHub repo download ([#59](https://github.com/TexteaInc/dev-kit/issues/59)) ([400dfc6](https://github.com/TexteaInc/dev-kit/commit/400dfc650d728b7e1aea4a2f8a38cc62543e64a7))
+
 ## [0.13.8](https://github.com/TexteaInc/dev-kit/compare/v0.13.7...v0.13.8) (2022-09-25)
 
 
