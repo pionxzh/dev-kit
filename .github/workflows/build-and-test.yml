@@ -4,16 +4,16 @@ on: [ push, pull_request, release ]
 
 jobs:
   test:
-    name: Running jest
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Use Node.js 18.x
+      - name: Use Node.js LTS
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version-file: ".nvmrc"
           cache: "yarn"
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path

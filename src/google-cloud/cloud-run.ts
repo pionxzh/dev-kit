@@ -31,6 +31,13 @@ export function createCloudRun (config: CloudBuildConfig) {
       logger('get service url: %s', uri)
       return uri
     },
+    deleteCloudRun: async (owner: string, repoName: string) => {
+      const serviceName = getCloudRunServiceName(owner, repoName)
+      const name = `projects/${config.projectId}/locations/us-central1/services/${serviceName}`
+      await cloudRunClient.deleteService({
+        name
+      })
+    },
     createCloudRun: async (owner: string, repoName: string) => {
       const serviceName = getCloudRunServiceName(owner, repoName)
       // tip: let it crash if build trigger already exist

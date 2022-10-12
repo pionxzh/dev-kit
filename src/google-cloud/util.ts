@@ -1,4 +1,5 @@
 // region generate unique name that won't make conflict with each user
+import type { Octokit } from '@octokit/rest'
 import { GoogleAuth } from 'google-auth-library'
 import type { ClientOptions } from 'google-gax'
 
@@ -15,7 +16,7 @@ export type AuthInfo = {
   client_x509_cert_url: string
 }
 
-export const createAuth = (info: AuthInfo) => {
+export const createAuth = (info: AuthInfo): GoogleAuth => {
   return new GoogleAuth({
     credentials: info
   })
@@ -36,4 +37,20 @@ export const getCloudRunServiceName = (owner: string, repoName: string) =>
 
 export type GoogleClientConfig = Pick<ClientOptions, 'projectId'> & {
   auth?: AuthInfo
+}
+
+export async function getGitHubRepoZip (
+  octokit: Octokit,
+  owner: string,
+  repo: string,
+  ref: string = 'main'
+): Promise<ArrayBuffer> {
+  const response = await octokit.request(
+    'GET /repos/{owner}/{repo}/tarball/{ref}', {
+      owner,
+      repo,
+      ref
+    }
+  )
+  return response.data as ArrayBuffer
 }

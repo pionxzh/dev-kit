@@ -2,10 +2,15 @@
   "extends": "./config/tsconfig.root.json",
   "compilerOptions": {
     "outDir": "./dist/out/",
-    "rootDir": "./src/"
+    "rootDir": ".",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "incremental": false,
+    "declaration": true
   },
   "include": [
     "src/**/*.ts",
+    "bin"
   ],
   "exclude": ["node_modules"]
 }

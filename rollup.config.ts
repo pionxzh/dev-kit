@@ -9,6 +9,7 @@ import type {
   RollupOptions
 } from 'rollup'
 import dts from 'rollup-plugin-dts'
+import { defineRollupSwcOption, swc } from 'rollup-plugin-swc3'
 
 let cache: RollupCache
 
@@ -28,7 +29,10 @@ const external = [
   'react-dom',
   '@google-cloud/cloudbuild',
   '@google-cloud/run',
+  '@google-cloud/storage',
+  '@octokit/rest',
   'uuid',
+  'buffer',
   'google-auth-library',
   'node:util'
 ]
@@ -38,7 +42,7 @@ const outputMatrix = (
   const baseName = basename(name)
   return format.flatMap(format => ({
     file: resolve(outputDir, `${baseName}.${format === 'es' ? 'm' : ''}js`),
-    sourcemap: true,
+    sourcemap: false,
     name: 'DevKit',
     format,
     banner: `/// <reference types="./${baseName}.d.ts" />`,
@@ -50,7 +54,7 @@ const outputMatrix = (
 }
 
 const buildMatrix = (input: string, output: string): RollupOptions => {
-  dtsOutput.add([input.replaceAll('.js', '.d.ts'), output])
+  dtsOutput.add([input, output])
   return {
     input,
     output: outputMatrix(output),
@@ -62,7 +66,22 @@ const buildMatrix = (input: string, output: string): RollupOptions => {
       }),
       nodeResolve({
         exportConditions: ['import', 'require', 'default']
-      })
+      }),
+      swc(defineRollupSwcOption({
+        jsc: {
+          externalHelpers: true,
+          parser: {
+            syntax: 'typescript',
+            tsx: true
+          },
+          transform: {
+            react: {
+              runtime: 'automatic',
+              importSource: '@emotion/react'
+            }
+          }
+        }
+      }))
     ]
   }
 }
@@ -82,11 +101,11 @@ const dtsMatrix = (): RollupOptions[] => {
 }
 
 const build: RollupOptions[] = [
-  buildMatrix('./dist/out/google-cloud/index.js', 'google-cloud'),
-  buildMatrix('./dist/out/python/index.js', 'python'),
-  buildMatrix('./dist/out/sheet/index.js', 'sheet'),
-  buildMatrix('./dist/out/theme/index.js', 'theme'),
-  buildMatrix('./dist/out/utils/index.js', 'utils'),
+  buildMatrix('./src/google-cloud/index.ts', 'google-cloud'),
+  buildMatrix('./src/python/index.ts', 'python'),
+  buildMatrix('./src/sheet/index.ts', 'sheet'),
+  buildMatrix('./src/theme/index.ts', 'theme'),
+  buildMatrix('./src/utils/index.ts', 'utils'),
   ...dtsMatrix()
 ]
 
