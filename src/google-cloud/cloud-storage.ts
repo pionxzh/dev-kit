@@ -17,6 +17,7 @@ export function createCloudStorage (config: CloudStorageConfig) {
   })
 
   return {
+    _client: storage,
     saveBuffer: async (
       userName: string,
       fileName: string,
