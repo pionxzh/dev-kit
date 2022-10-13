@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/TexteaInc/dev-kit/compare/v0.14.0...v0.14.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* export client ([609bff6](https://github.com/TexteaInc/dev-kit/commit/609bff6f32ad5018f28a5fd61f3fbd8bfbe8fec3))
+
 ## [0.14.0](https://github.com/TexteaInc/dev-kit/compare/v0.13.8...v0.14.0) (2022-10-12)
 
 
