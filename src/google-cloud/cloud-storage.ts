@@ -3,7 +3,7 @@ import { Octokit } from '@octokit/rest'
 import { Buffer } from 'buffer'
 
 import type { GoogleClientConfig } from './util'
-import { createAuth, getGitHubRepoZip } from './util'
+import { getGitHubRepoZip } from './util'
 
 export * from './util'
 
@@ -12,8 +12,7 @@ export interface CloudStorageConfig extends GoogleClientConfig {}
 export function createCloudStorage (config: CloudStorageConfig) {
   const storage = new Storage({
     projectId: config.projectId,
-    // fixme: ignore the error
-    authClient: (config.auth ? createAuth(config.auth) : undefined) as any
+    credentials: config.auth
   })
 
   return {
