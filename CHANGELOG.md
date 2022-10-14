@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.2](https://github.com/TexteaInc/dev-kit/compare/v0.14.1...v0.14.2) (2022-10-14)
+
+
+### Bug Fixes
+
+* credentials in storage ([5e4c869](https://github.com/TexteaInc/dev-kit/commit/5e4c869f8d8ed4647f52dbbd52c867a6266b5b57))
+
 ## [0.14.1](https://github.com/TexteaInc/dev-kit/compare/v0.14.0...v0.14.1) (2022-10-13)
 
 
