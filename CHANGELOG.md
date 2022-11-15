@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/TexteaInc/dev-kit/compare/v0.14.2...v1.0.0) (2022-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* make google-cloud sdk peerDependencies
+
+### Code Refactoring
+
+* make google-cloud sdk peerDependencies ([841c230](https://github.com/TexteaInc/dev-kit/commit/841c230d6c4ab7591eab28171aa1bb93ee933202))
+
 ## [0.14.2](https://github.com/TexteaInc/dev-kit/compare/v0.14.1...v0.14.2) (2022-10-14)
 
 
