@@ -63,8 +63,6 @@
     "*.{ts,tsx,js,jsx}": "npx eslint --cache --fix"
   },
   "dependencies": {
-    "@google-cloud/cloudbuild": "^3.1.2",
-    "@google-cloud/run": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "eslint": "^8.25.0",
@@ -81,6 +79,8 @@
   "peerDependencies": {
     "@emotion/react": "*",
     "@emotion/styled": "*",
+    "@google-cloud/cloudbuild": "*",
+    "@google-cloud/run": "*",
     "@google-cloud/storage": "*",
     "@mui/material": "^5",
     "@octokit/rest": "*",
@@ -91,6 +91,12 @@
       "optional": true
     },
     "@emotion/styled": {
+      "optional": true
+    },
+    "@google-cloud/cloudbuild": {
+      "optional": true
+    },
+    "@google-cloud/run": {
       "optional": true
     },
     "@google-cloud/storage": {
@@ -111,6 +117,8 @@
     "@commitlint/config-angular": "^17.1.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@google-cloud/cloudbuild": "^3.2.0",
+    "@google-cloud/run": "^0.2.3",
     "@google-cloud/storage": "^6.5.2",
     "@mui/material": "^5.10.9",
     "@octokit/rest": "^19.0.4",
