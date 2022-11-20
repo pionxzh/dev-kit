@@ -42,7 +42,7 @@ export function createCloudRun (config: CloudBuildConfig) {
       const serviceName = getCloudRunServiceName(owner, repoName)
       // tip: let it crash if build trigger already exist
       const parent = `projects/${config.projectId}/locations/us-central1`
-      await cloudRunClient.createService({
+      const [operation] = await cloudRunClient.createService({
         parent,
         serviceId: serviceName,
         service: {
@@ -80,6 +80,7 @@ export function createCloudRun (config: CloudBuildConfig) {
           ]
         }
       })
+      return operation
     }
   } as const
   Object.freeze(apis)
