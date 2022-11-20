@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/TexteaInc/dev-kit/compare/v1.0.0...v1.1.0) (2022-11-20)
+
+
+### Features
+
+* add return value on `createCloudRun` ([5483c34](https://github.com/TexteaInc/dev-kit/commit/5483c349534e12cb0f2790f1744dfa61528d91c6))
+
 ## [1.0.0](https://github.com/TexteaInc/dev-kit/compare/v0.14.2...v1.0.0) (2022-11-15)
 
 
